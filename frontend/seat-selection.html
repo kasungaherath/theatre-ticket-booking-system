@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Seats | TheatreBooking</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">TheatreBooking</h1>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#shows">Shows</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="seat-page">
+
+        <section class="seat-selection-section">
+
+            <h2>Select Your Seats</h2>
+
+            <p id="show-info">
+                Loading show information...
+            </p>
+
+            <div class="screen">
+                SCREEN
+            </div>
+
+            <div id="seats-container" class="seats-container">
+                <p>Loading seats...</p>
+            </div>
+
+            <div class="seat-legend">
+
+                <div>
+                    <span class="legend-box available"></span>
+                    Available
+                </div>
+
+                <div>
+                    <span class="legend-box selected"></span>
+                    Selected
+                </div>
+
+                <div>
+                    <span class="legend-box booked"></span>
+                    Booked
+                </div>
+
+            </div>
+
+            <div class="booking-summary">
+
+                <h3>Booking Summary</h3>
+
+                <p>
+                    Selected Seats:
+                    <span id="selected-seats">None</span>
+                </p>
+
+                <p>
+                    Total:
+                    Rs. <span id="total-price">0.00</span>
+                </p>
+
+                <button
+                    id="continue-btn"
+                    class="book-btn"
+                    disabled
+                >
+                    Continue Booking
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Theatre Ticket Booking System</p>
+    </footer>
+
+    <script src="js/seat-selection.js"></script>
+
+</body>
+</html>

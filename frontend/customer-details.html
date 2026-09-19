@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Details | TheatreBooking</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">TheatreBooking</h1>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#shows">Shows</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="customer-page">
+
+        <section class="customer-details-section">
+
+            <h2>Customer Details</h2>
+
+            <p class="section-description">
+                Enter your information to continue with the booking.
+            </p>
+
+            <div class="customer-booking-summary">
+
+                <h3>Your Selection</h3>
+
+                <p>
+                    Show ID:
+                    <span id="summary-show-id">-</span>
+                </p>
+
+                <p>
+                    Seats:
+                    <span id="summary-seats">-</span>
+                </p>
+
+            </div>
+
+            <form id="customer-form">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        minlength="6"
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="book-btn"
+                >
+                    Confirm Booking
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Theatre Ticket Booking System</p>
+    </footer>
+
+    <script src="js/customer-details.js"></script>
+
+</body>
+</html>

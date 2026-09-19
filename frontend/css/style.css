@@ -172,6 +172,260 @@ footer {
     margin-top: 40px;
 }
 
+/* Seat Selection Page */
+
+.seat-page {
+    min-height: 80vh;
+    padding: 50px 20px;
+}
+
+.seat-selection-section {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.seat-selection-section h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+#show-info {
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.screen {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    padding: 12px;
+
+    background-color: #d1d5db;
+
+    border-radius: 50% 50% 5px 5px;
+
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.seats-container {
+    max-width: 650px;
+    margin: 0 auto 35px;
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
+}
+
+.seat {
+    padding: 12px 5px;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.seat.available {
+    background-color: #d1fae5;
+}
+
+.seat.available:hover {
+    background-color: #a7f3d0;
+}
+
+.seat.selected {
+    background-color: #fbbf24;
+}
+
+.seat.booked {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+}
+
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+}
+
+.seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+
+    display: inline-block;
+
+    border-radius: 4px;
+}
+
+.legend-box.available {
+    background-color: #d1fae5;
+}
+
+.legend-box.selected {
+    background-color: #fbbf24;
+}
+
+.legend-box.booked {
+    background-color: #d1d5db;
+}
+
+.booking-summary {
+    max-width: 500px;
+    margin: 0 auto;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    text-align: left;
+}
+
+.booking-summary h3 {
+    margin-bottom: 20px;
+}
+
+.booking-summary p {
+    margin-bottom: 12px;
+}
+
+.booking-summary .book-btn {
+    margin-top: 15px;
+}
+
+.book-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+/* Customer Details Page */
+
+.customer-page {
+    min-height: 80vh;
+    padding: 50px 20px;
+}
+
+.customer-details-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.customer-details-section h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.customer-booking-summary {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.customer-booking-summary h3 {
+    margin-bottom: 15px;
+}
+
+.customer-booking-summary p {
+    margin-bottom: 10px;
+}
+
+#customer-form {
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-size: 16px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #e11d48;
+}
+
+/* Booking Confirmation Page */
+
+.confirmation-page {
+    min-height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+}
+
+.confirmation-box {
+    width: 100%;
+    max-width: 550px;
+
+    background-color: white;
+
+    padding: 40px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.confirmation-box h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.confirmation-box p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.confirmation-box .btn {
+    margin-top: 10px;
+}
+
 /* Mobile */
 
 @media (max-width: 600px) {

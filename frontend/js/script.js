@@ -77,7 +77,5 @@ function displayShows(shows) {
 }
 
 function selectShow(showId) {
-    console.log("Selected show ID:", showId);
-
-    alert(`You selected show ${showId}. Seat selection will be added next.`);
+    window.location.href = `seat-selection.html?showId=${showId}`;
 }
