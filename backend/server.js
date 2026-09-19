@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const db = require("./db");
 
 const app = express();
@@ -7,9 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("Theatre Ticket Booking System API is running!");
-});
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get("/api/test-db", (req, res) => {
     db.query("SELECT NOW() AS currentTime", (err, results) => {
