@@ -1,10 +1,16 @@
 const adminData =
     sessionStorage.getItem("admin");
 
-if (!adminData) {
+const adminToken =
+    sessionStorage.getItem("adminToken");
+
+
+if (!adminData || !adminToken) {
+
     window.location.href =
         "/admin-login.html";
 }
+
 
 const bookingsContainer =
     document.getElementById(
@@ -16,12 +22,20 @@ const logoutButton =
         "logout-btn"
     );
 
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
         loadBookings();
+
     }
 );
+
+
+// ======================================================
+// LOGOUT
+// ======================================================
 
 logoutButton.addEventListener(
     "click",
@@ -29,36 +43,91 @@ logoutButton.addEventListener(
 
         event.preventDefault();
 
+
         sessionStorage.removeItem(
             "admin"
         );
+
+        sessionStorage.removeItem(
+            "adminToken"
+        );
+
 
         window.location.href =
             "/admin-login.html";
     }
 );
 
+
+// ======================================================
+// LOAD BOOKINGS
+// ======================================================
+
 async function loadBookings() {
 
     bookingsContainer.innerHTML =
         "<p>Loading bookings...</p>";
 
+
     try {
 
-        const response = await fetch(
-            "/api/admin/bookings"
-        );
+        const response =
+            await fetch(
+                "/api/admin/bookings",
+                {
+                    headers: {
 
-        if (!response.ok) {
-            throw new Error(
-                "Failed to fetch bookings"
+                        "Authorization":
+                            `Bearer ${adminToken}`
+
+                    }
+                }
             );
-        }
 
-        const bookings =
+
+        const result =
             await response.json();
 
-        displayBookings(bookings);
+
+        // Token expired or invalid
+        if (
+            response.status === 401 ||
+            response.status === 403
+        ) {
+
+            sessionStorage.removeItem(
+                "admin"
+            );
+
+            sessionStorage.removeItem(
+                "adminToken"
+            );
+
+
+            alert(
+                result.message ||
+                "Your admin session has expired."
+            );
+
+
+            window.location.href =
+                "/admin-login.html";
+
+            return;
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.message ||
+                "Failed to fetch bookings"
+            );
+
+        }
+
+
+        displayBookings(result);
 
     } catch (error) {
 
@@ -67,14 +136,21 @@ async function loadBookings() {
             error
         );
 
+
         bookingsContainer.innerHTML =
             "<p>Unable to load bookings.</p>";
     }
 }
 
+
+// ======================================================
+// DISPLAY BOOKINGS
+// ======================================================
+
 function displayBookings(bookings) {
 
     bookingsContainer.innerHTML = "";
+
 
     if (bookings.length === 0) {
 
@@ -84,111 +160,145 @@ function displayBookings(bookings) {
         return;
     }
 
-    bookings.forEach((booking) => {
 
-        const bookingCard =
-            document.createElement("div");
+    bookings.forEach(
+        (booking) => {
 
-        bookingCard.classList.add(
-            "admin-booking-card"
-        );
+            const bookingCard =
+                document.createElement(
+                    "div"
+                );
 
-        const showDate =
-            new Date(
-                booking.show_date
+
+            bookingCard.classList.add(
+                "admin-booking-card"
             );
 
-        const formattedShowDate =
-            showDate.toLocaleDateString();
 
-        const bookingDate =
-            new Date(
-                booking.booking_date
-            );
+            // Format show date
+            const showDate =
+                new Date(
+                    booking.show_date
+                );
 
-        const formattedBookingDate =
-            bookingDate.toLocaleString();
 
-        bookingCard.innerHTML = `
-            <div class="booking-card-header">
+            const formattedShowDate =
+                showDate
+                    .toLocaleDateString();
 
-                <h3>
-                    Booking #${booking.booking_id}
-                </h3>
 
-                <span>
-                    ${formattedBookingDate}
-                </span>
+            // Format booking date
+            const bookingDate =
+                new Date(
+                    booking.booking_date
+                );
 
-            </div>
 
-            <div class="booking-details-grid">
+            const formattedBookingDate =
+                bookingDate
+                    .toLocaleString();
 
-                <div>
-                    <strong>
-                        Customer
-                    </strong>
 
-                    <p>
-                        ${booking.customer_name}
-                    </p>
+            bookingCard.innerHTML = `
+                <div class="booking-card-header">
+
+                    <h3>
+                        Booking #${booking.booking_id}
+                    </h3>
+
+                    <span>
+                        ${formattedBookingDate}
+                    </span>
+
                 </div>
 
-                <div>
-                    <strong>
-                        Email
-                    </strong>
+                <div class="booking-details-grid">
 
-                    <p>
-                        ${booking.customer_email}
-                    </p>
+                    <div>
+
+                        <strong>
+                            Customer
+                        </strong>
+
+                        <p>
+                            ${booking.customer_name}
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Email
+                        </strong>
+
+                        <p>
+                            ${booking.customer_email}
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Show
+                        </strong>
+
+                        <p>
+                            ${booking.show_title}
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Show Date
+                        </strong>
+
+                        <p>
+                            ${formattedShowDate}
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Show Time
+                        </strong>
+
+                        <p>
+                            ${booking.show_time}
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Seats
+                        </strong>
+
+                        <p>
+                            ${booking.seats}
+                        </p>
+
+                    </div>
+
                 </div>
+            `;
 
-                <div>
-                    <strong>
-                        Show
-                    </strong>
 
-                    <p>
-                        ${booking.show_title}
-                    </p>
-                </div>
-
-                <div>
-                    <strong>
-                        Show Date
-                    </strong>
-
-                    <p>
-                        ${formattedShowDate}
-                    </p>
-                </div>
-
-                <div>
-                    <strong>
-                        Show Time
-                    </strong>
-
-                    <p>
-                        ${booking.show_time}
-                    </p>
-                </div>
-
-                <div>
-                    <strong>
-                        Seats
-                    </strong>
-
-                    <p>
-                        ${booking.seats}
-                    </p>
-                </div>
-
-            </div>
-        `;
-
-        bookingsContainer.appendChild(
-            bookingCard
-        );
-    });
+            bookingsContainer
+                .appendChild(
+                    bookingCard
+                );
+        }
+    );
 }

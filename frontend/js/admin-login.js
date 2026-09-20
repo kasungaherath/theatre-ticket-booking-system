@@ -21,40 +21,59 @@ adminLoginForm.addEventListener(
                 .getElementById("admin-password")
                 .value;
 
-        loginMessage.textContent = "Logging in...";
+        loginMessage.textContent =
+            "Logging in...";
 
         try {
 
-            const response = await fetch(
-                "/api/admin/login",
-                {
-                    method: "POST",
+            const response =
+                await fetch(
+                    "/api/admin/login",
+                    {
+                        method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
 
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }
-            );
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    }
+                );
 
-            const result = await response.json();
+            const result =
+                await response.json();
 
             if (!response.ok) {
+
                 loginMessage.textContent =
-                    result.message || "Login failed";
+                    result.message ||
+                    "Login failed";
 
                 return;
             }
 
+
+            // Save admin information
             sessionStorage.setItem(
                 "admin",
-                JSON.stringify(result.admin)
+                JSON.stringify(
+                    result.admin
+                )
             );
 
+
+            // Save JWT token
+            sessionStorage.setItem(
+                "adminToken",
+                result.token
+            );
+
+
+            // Go to dashboard
             window.location.href =
                 "/admin-dashboard.html";
 

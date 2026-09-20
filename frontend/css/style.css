@@ -1,13 +1,30 @@
+/* ======================================================
+   RESET
+====================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/* ======================================================
+   GENERAL
+====================================================== */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
     color: #222;
+}
+
+main {
+    width: 100%;
+}
+
+section {
+    scroll-margin-top: 30px;
 }
 
 .container {
@@ -16,7 +33,40 @@ body {
     margin: 0 auto;
 }
 
-/* Navigation */
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+input,
+textarea {
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #e11d48;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(225, 29, 72, 0.12);
+}
+
+
+/* ======================================================
+   NAVIGATION
+====================================================== */
 
 .navbar {
     background-color: #111827;
@@ -34,6 +84,11 @@ body {
     font-size: 24px;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+}
+
 nav a {
     color: white;
     text-decoration: none;
@@ -44,16 +99,23 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Hero */
+
+/* ======================================================
+   HERO SECTION
+====================================================== */
 
 .hero {
     min-height: 450px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     text-align: center;
+
     background-color: #1f2937;
     color: white;
+
     padding: 40px 20px;
 }
 
@@ -72,20 +134,37 @@ nav a:hover {
     margin-bottom: 30px;
 }
 
+
+/* ======================================================
+   GENERAL BUTTON
+====================================================== */
+
 .btn {
     display: inline-block;
+
     background-color: #e11d48;
     color: white;
+
     padding: 12px 25px;
+
     border-radius: 6px;
+
     text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .btn:hover {
     background-color: #be123c;
+    transform: translateY(-1px);
 }
 
-/* Shows */
+
+/* ======================================================
+   SHOWS SECTION
+====================================================== */
 
 .shows-section {
     padding: 60px 5%;
@@ -107,20 +186,45 @@ nav a:hover {
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
     gap: 25px;
 }
+
+
+/* ======================================================
+   SHOW CARDS
+====================================================== */
+
 .show-card {
     background-color: white;
+
     border-radius: 10px;
+
     padding: 25px;
+
     text-align: left;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .show-card:hover {
     transform: translateY(-5px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.12);
 }
 
 .show-card h3 {
@@ -130,7 +234,9 @@ nav a:hover {
 
 .show-description {
     color: #666;
+
     line-height: 1.5;
+
     margin-bottom: 20px;
 }
 
@@ -141,12 +247,20 @@ nav a:hover {
 .show-price {
     font-size: 20px;
     font-weight: bold;
+
     margin-top: 15px;
 }
 
+
+/* ======================================================
+   BOOK BUTTON
+====================================================== */
+
 .book-btn {
     width: 100%;
+
     margin-top: 15px;
+
     padding: 12px;
 
     background-color: #e11d48;
@@ -156,23 +270,27 @@ nav a:hover {
     border-radius: 6px;
 
     font-size: 16px;
+
     cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.book-btn:hover {
+.book-btn:hover:not(:disabled) {
     background-color: #be123c;
 }
-/* Footer */
 
-footer {
-    background-color: #111827;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+.book-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
 }
 
-/* Seat Selection Page */
+
+/* ======================================================
+   SEAT SELECTION PAGE
+====================================================== */
 
 .seat-page {
     min-height: 80vh;
@@ -181,7 +299,9 @@ footer {
 
 .seat-selection-section {
     max-width: 900px;
+
     margin: 0 auto;
+
     text-align: center;
 }
 
@@ -195,25 +315,47 @@ footer {
     margin-bottom: 40px;
 }
 
+
+/* ======================================================
+   THEATRE SCREEN
+====================================================== */
+
 .screen {
     max-width: 600px;
+
     margin: 0 auto 40px;
+
     padding: 12px;
 
     background-color: #d1d5db;
 
-    border-radius: 50% 50% 5px 5px;
+    border-radius:
+        50% 50% 5px 5px;
 
     font-weight: bold;
+
     letter-spacing: 4px;
+
+    box-shadow:
+        0 4px 10px
+        rgba(0, 0, 0, 0.1);
 }
+
+
+/* ======================================================
+   SEATS
+====================================================== */
 
 .seats-container {
     max-width: 650px;
+
     margin: 0 auto 35px;
 
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+
+    grid-template-columns:
+        repeat(10, 1fr);
+
     gap: 10px;
 }
 
@@ -221,10 +363,16 @@ footer {
     padding: 12px 5px;
 
     border: none;
+
     border-radius: 5px;
 
     cursor: pointer;
+
     font-weight: bold;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .seat.available {
@@ -241,13 +389,23 @@ footer {
 
 .seat.booked {
     background-color: #d1d5db;
+    color: #6b7280;
+
     cursor: not-allowed;
 }
 
+
+/* ======================================================
+   SEAT LEGEND
+====================================================== */
+
 .seat-legend {
     display: flex;
+
     justify-content: center;
+
     gap: 30px;
+
     flex-wrap: wrap;
 
     margin-bottom: 35px;
@@ -255,7 +413,9 @@ footer {
 
 .seat-legend div {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 }
 
@@ -280,8 +440,14 @@ footer {
     background-color: #d1d5db;
 }
 
+
+/* ======================================================
+   BOOKING SUMMARY
+====================================================== */
+
 .booking-summary {
     max-width: 500px;
+
     margin: 0 auto;
 
     background-color: white;
@@ -290,7 +456,9 @@ footer {
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 
     text-align: left;
 }
@@ -307,36 +475,43 @@ footer {
     margin-top: 15px;
 }
 
-.book-btn:disabled {
-    background-color: #9ca3af;
-    cursor: not-allowed;
-}
-/* Customer Details Page */
+
+/* ======================================================
+   CUSTOMER DETAILS PAGE
+====================================================== */
 
 .customer-page {
     min-height: 80vh;
+
     padding: 50px 20px;
 }
 
 .customer-details-section {
     max-width: 600px;
+
     margin: 0 auto;
 }
 
 .customer-details-section h2 {
     text-align: center;
+
     font-size: 32px;
+
     margin-bottom: 10px;
 }
 
 .customer-booking-summary {
     background-color: white;
+
     padding: 20px;
+
     margin-bottom: 30px;
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 }
 
 .customer-booking-summary h3 {
@@ -347,14 +522,22 @@ footer {
     margin-bottom: 10px;
 }
 
-#customer-form {
+
+/* ======================================================
+   FORMS
+====================================================== */
+
+#customer-form,
+#show-form {
     background-color: white;
 
     padding: 30px;
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 }
 
 .form-group {
@@ -369,29 +552,38 @@ footer {
     font-weight: bold;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     width: 100%;
 
     padding: 12px;
 
     border: 1px solid #ccc;
+
     border-radius: 6px;
 
     font-size: 16px;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     outline: none;
+
     border-color: #e11d48;
 }
 
-/* Booking Confirmation Page */
+
+/* ======================================================
+   BOOKING CONFIRMATION PAGE
+====================================================== */
 
 .confirmation-page {
     min-height: 80vh;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     padding: 40px 20px;
@@ -399,6 +591,7 @@ footer {
 
 .confirmation-box {
     width: 100%;
+
     max-width: 550px;
 
     background-color: white;
@@ -409,16 +602,20 @@ footer {
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 }
 
 .confirmation-box h2 {
     font-size: 32px;
+
     margin-bottom: 20px;
 }
 
 .confirmation-box p {
     margin-bottom: 20px;
+
     line-height: 1.6;
 }
 
@@ -426,13 +623,18 @@ footer {
     margin-top: 10px;
 }
 
-/* Admin Login */
+
+/* ======================================================
+   ADMIN LOGIN
+====================================================== */
 
 .admin-login-page {
     min-height: 80vh;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
     padding: 40px 20px;
@@ -440,6 +642,7 @@ footer {
 
 .admin-login-box {
     width: 100%;
+
     max-width: 450px;
 
     background-color: white;
@@ -448,7 +651,9 @@ footer {
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 }
 
 .admin-login-box h2 {
@@ -467,20 +672,26 @@ footer {
     font-weight: bold;
 }
 
-/* Admin Dashboard */
+
+/* ======================================================
+   ADMIN DASHBOARD
+====================================================== */
 
 .admin-dashboard {
     min-height: 80vh;
+
     padding: 50px 5%;
 }
 
 .admin-welcome {
     max-width: 1100px;
+
     margin: 0 auto 40px;
 }
 
 .admin-welcome h2 {
     font-size: 32px;
+
     margin-bottom: 10px;
 }
 
@@ -490,13 +701,16 @@ footer {
 
 .admin-cards {
     max-width: 1100px;
+
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: repeat(
-        auto-fit,
-        minmax(280px, 1fr)
-    );
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
 
     gap: 25px;
 }
@@ -508,25 +722,47 @@ footer {
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.12);
 }
 
 .admin-card h3 {
     font-size: 24px;
+
     margin-bottom: 15px;
 }
 
 .admin-card p {
     color: #666;
+
     line-height: 1.6;
+
     margin-bottom: 25px;
 }
 
-/* Admin Show Management */
+
+/* ======================================================
+   ADMIN SHOW MANAGEMENT
+====================================================== */
 
 .admin-shows-page {
     max-width: 1100px;
+
     margin: 0 auto;
+
     padding: 50px 20px;
 }
 
@@ -537,7 +773,9 @@ footer {
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 
     margin-bottom: 40px;
 }
@@ -568,6 +806,7 @@ footer {
 
 #admin-shows-container {
     display: grid;
+
     gap: 20px;
 }
 
@@ -578,7 +817,9 @@ footer {
 
     border-radius: 10px;
 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 4px 12px
+        rgba(0, 0, 0, 0.08);
 
     display: flex;
 
@@ -599,8 +840,14 @@ footer {
 
 .admin-show-actions {
     display: flex;
+
     gap: 10px;
 }
+
+
+/* ======================================================
+   ADMIN ACTION BUTTONS
+====================================================== */
 
 .edit-btn,
 .delete-btn,
@@ -618,27 +865,54 @@ footer {
 
 .edit-btn {
     background-color: #2563eb;
+
     color: white;
+}
+
+.edit-btn:hover {
+    background-color: #1d4ed8;
 }
 
 .delete-btn {
     background-color: #dc2626;
+
     color: white;
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
 }
 
 .cancel-btn {
     background-color: #6b7280;
+
     color: white;
 
     margin-top: 10px;
 }
 
-/* Admin Booking Management */
+.cancel-btn:hover {
+    background-color: #4b5563;
+}
+
+#show-message {
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+
+/* ======================================================
+   ADMIN BOOKING MANAGEMENT
+====================================================== */
 
 .admin-bookings-page {
     max-width: 1100px;
+
     margin: 0 auto;
+
     padding: 50px 20px;
+
     min-height: 80vh;
 }
 
@@ -648,6 +922,7 @@ footer {
 
 .admin-bookings-header h2 {
     font-size: 32px;
+
     margin-bottom: 10px;
 }
 
@@ -657,6 +932,7 @@ footer {
 
 #bookings-container {
     display: grid;
+
     gap: 20px;
 }
 
@@ -670,6 +946,18 @@ footer {
     box-shadow:
         0 4px 12px
         rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.admin-booking-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(0, 0, 0, 0.1);
 }
 
 .booking-card-header {
@@ -695,6 +983,7 @@ footer {
 
 .booking-card-header span {
     color: #666;
+
     font-size: 14px;
 }
 
@@ -722,20 +1011,230 @@ footer {
     color: #666;
 }
 
-/* Mobile */
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+footer {
+    background-color: #111827;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+}
+
+
+/* ======================================================
+   TABLET
+====================================================== */
+
+@media (max-width: 900px) {
+
+    .seats-container {
+        max-width: 550px;
+    }
+
+    .admin-show-item {
+        align-items: flex-start;
+    }
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
 
 @media (max-width: 600px) {
 
+    /* Navigation */
+
     .navbar .container {
         flex-direction: column;
+
         gap: 15px;
     }
 
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px;
+    }
+
     nav a {
-        margin: 0 10px;
+        margin: 0 5px;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        min-height: 380px;
+
+        padding: 30px 15px;
     }
 
     .hero h2 {
         font-size: 34px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    /* Shows */
+
+    .shows-section {
+        padding:
+            40px 20px;
+    }
+
+    .shows-container {
+        grid-template-columns: 1fr;
+    }
+
+    .show-card {
+        padding: 20px;
+    }
+
+
+    /* Seats */
+
+    .seat-page {
+        padding:
+            35px 12px;
+    }
+
+    .seats-container {
+        grid-template-columns:
+            repeat(5, 1fr);
+
+        max-width: 400px;
+
+        gap: 8px;
+    }
+
+    .seat {
+        padding:
+            10px 4px;
+
+        font-size: 13px;
+    }
+
+    .seat-legend {
+        gap: 15px;
+    }
+
+    .screen {
+        margin-bottom: 30px;
+
+        font-size: 14px;
+    }
+
+
+    /* Booking summary */
+
+    .booking-summary {
+        padding: 20px;
+    }
+
+
+    /* Customer form */
+
+    #customer-form {
+        padding: 20px;
+    }
+
+    .customer-page {
+        padding:
+            35px 15px;
+    }
+
+
+    /* Confirmation */
+
+    .confirmation-box {
+        padding:
+            30px 20px;
+    }
+
+
+    /* Admin Login */
+
+    .admin-login-box {
+        padding:
+            25px 20px;
+    }
+
+
+    /* Admin Dashboard */
+
+    .admin-dashboard {
+        padding:
+            35px 20px;
+    }
+
+    .admin-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-card {
+        padding: 25px;
+    }
+
+
+    /* Admin Shows */
+
+    .admin-shows-page {
+        padding:
+            35px 15px;
+    }
+
+    .admin-show-form-section {
+        padding: 20px;
+    }
+
+    .admin-show-item {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .admin-show-actions {
+        width: 100%;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        flex: 1;
+    }
+
+
+    /* Admin Bookings */
+
+    .admin-bookings-page {
+        padding:
+            35px 15px;
+    }
+
+    .booking-card-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .booking-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-booking-card {
+        padding: 20px;
     }
 }

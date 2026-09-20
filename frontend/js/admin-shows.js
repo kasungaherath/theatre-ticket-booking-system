@@ -1,139 +1,298 @@
-const adminData = sessionStorage.getItem("admin");
+const adminData =
+    sessionStorage.getItem("admin");
 
-if (!adminData) {
-    window.location.href = "/admin-login.html";
+const adminToken =
+    sessionStorage.getItem("adminToken");
+
+
+if (!adminData || !adminToken) {
+
+    window.location.href =
+        "/admin-login.html";
 }
 
-const showForm = document.getElementById("show-form");
 
-const showIdInput = document.getElementById("show-id");
-const titleInput = document.getElementById("show-title");
+// ======================================================
+// ELEMENTS
+// ======================================================
+
+const showForm =
+    document.getElementById(
+        "show-form"
+    );
+
+const showIdInput =
+    document.getElementById(
+        "show-id"
+    );
+
+const titleInput =
+    document.getElementById(
+        "show-title"
+    );
+
 const descriptionInput =
-    document.getElementById("show-description");
+    document.getElementById(
+        "show-description"
+    );
 
-const dateInput = document.getElementById("show-date");
-const timeInput = document.getElementById("show-time");
-const priceInput = document.getElementById("show-price");
+const dateInput =
+    document.getElementById(
+        "show-date"
+    );
 
-const formTitle = document.getElementById("form-title");
+const timeInput =
+    document.getElementById(
+        "show-time"
+    );
+
+const priceInput =
+    document.getElementById(
+        "show-price"
+    );
+
+const formTitle =
+    document.getElementById(
+        "form-title"
+    );
+
 const saveButton =
-    document.getElementById("save-show-btn");
+    document.getElementById(
+        "save-show-btn"
+    );
 
 const cancelEditButton =
-    document.getElementById("cancel-edit-btn");
+    document.getElementById(
+        "cancel-edit-btn"
+    );
 
 const showMessage =
-    document.getElementById("show-message");
+    document.getElementById(
+        "show-message"
+    );
 
 const showsContainer =
-    document.getElementById("admin-shows-container");
+    document.getElementById(
+        "admin-shows-container"
+    );
 
 const logoutButton =
-    document.getElementById("logout-btn");
+    document.getElementById(
+        "logout-btn"
+    );
+
 
 let currentShows = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadShows();
-});
 
-logoutButton.addEventListener("click", (event) => {
-    event.preventDefault();
+// ======================================================
+// PAGE LOAD
+// ======================================================
 
-    sessionStorage.removeItem("admin");
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    window.location.href = "/admin-login.html";
-});
+        loadShows();
+
+    }
+);
+
+
+// ======================================================
+// LOGOUT
+// ======================================================
+
+logoutButton.addEventListener(
+    "click",
+    (event) => {
+
+        event.preventDefault();
+
+
+        sessionStorage.removeItem(
+            "admin"
+        );
+
+        sessionStorage.removeItem(
+            "adminToken"
+        );
+
+
+        window.location.href =
+            "/admin-login.html";
+    }
+);
+
+
+// ======================================================
+// LOAD SHOWS
+// ======================================================
 
 async function loadShows() {
+
     showsContainer.innerHTML =
         "<p>Loading shows...</p>";
 
+
     try {
-        const response = await fetch("/api/shows");
+
+        const response =
+            await fetch(
+                "/api/shows"
+            );
+
 
         if (!response.ok) {
-            throw new Error("Failed to load shows");
+
+            throw new Error(
+                "Failed to load shows"
+            );
+
         }
 
-        currentShows = await response.json();
+
+        currentShows =
+            await response.json();
+
 
         displayShows();
 
     } catch (error) {
-        console.error("Error loading shows:", error);
+
+        console.error(
+            "Error loading shows:",
+            error
+        );
+
 
         showsContainer.innerHTML =
             "<p>Unable to load shows.</p>";
     }
 }
 
+
+// ======================================================
+// DISPLAY SHOWS
+// ======================================================
+
 function displayShows() {
+
     showsContainer.innerHTML = "";
 
+
     if (currentShows.length === 0) {
+
         showsContainer.innerHTML =
             "<p>No shows available.</p>";
 
         return;
     }
 
-    currentShows.forEach((show) => {
-        const card = document.createElement("div");
 
-        card.classList.add("admin-show-item");
+    currentShows.forEach(
+        (show) => {
 
-        const showDate = new Date(show.show_date);
+            const card =
+                document.createElement(
+                    "div"
+                );
 
-        const formattedDate =
-            showDate.toLocaleDateString();
 
-        card.innerHTML = `
-            <div>
-                <h3>${show.title}</h3>
+            card.classList.add(
+                "admin-show-item"
+            );
 
-                <p>
-                    ${show.description || "No description"}
-                </p>
 
-                <p>
-                    <strong>Date:</strong>
-                    ${formattedDate}
-                </p>
+            const showDate =
+                new Date(
+                    show.show_date
+                );
 
-                <p>
-                    <strong>Time:</strong>
-                    ${show.show_time}
-                </p>
 
-                <p>
-                    <strong>Price:</strong>
-                    Rs. ${Number(show.price).toFixed(2)}
-                </p>
-            </div>
+            const formattedDate =
+                showDate
+                    .toLocaleDateString();
 
-            <div class="admin-show-actions">
 
-                <button
-                    class="edit-btn"
-                    onclick="startEdit(${show.id})"
-                >
-                    Edit
-                </button>
+            card.innerHTML = `
+                <div>
 
-                <button
-                    class="delete-btn"
-                    onclick="deleteShow(${show.id})"
-                >
-                    Delete
-                </button>
+                    <h3>
+                        ${show.title}
+                    </h3>
 
-            </div>
-        `;
+                    <p>
+                        ${
+                            show.description ||
+                            "No description"
+                        }
+                    </p>
 
-        showsContainer.appendChild(card);
-    });
+                    <p>
+                        <strong>
+                            Date:
+                        </strong>
+
+                        ${formattedDate}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Time:
+                        </strong>
+
+                        ${show.show_time}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Price:
+                        </strong>
+
+                        Rs. ${
+                            Number(
+                                show.price
+                            ).toFixed(2)
+                        }
+                    </p>
+
+                </div>
+
+
+                <div class="admin-show-actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="startEdit(${show.id})"
+                    >
+                        Edit
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteShow(${show.id})"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+            `;
+
+
+            showsContainer
+                .appendChild(
+                    card
+                );
+        }
+    );
 }
+
+
+// ======================================================
+// ADD OR UPDATE SHOW
+// ======================================================
 
 showForm.addEventListener(
     "submit",
@@ -141,11 +300,18 @@ showForm.addEventListener(
 
         event.preventDefault();
 
+
         const showData = {
-            title: titleInput.value.trim(),
+
+            title:
+                titleInput
+                    .value
+                    .trim(),
 
             description:
-                descriptionInput.value.trim(),
+                descriptionInput
+                    .value
+                    .trim(),
 
             show_date:
                 dateInput.value,
@@ -154,51 +320,130 @@ showForm.addEventListener(
                 timeInput.value,
 
             price:
-                Number(priceInput.value)
+                Number(
+                    priceInput.value
+                )
         };
 
-        const showId = showIdInput.value;
+
+        // Basic validation
+        if (
+            !showData.title ||
+            !showData.show_date ||
+            !showData.show_time ||
+            Number.isNaN(
+                showData.price
+            )
+        ) {
+
+            showMessage.textContent =
+                "Please complete all required fields.";
+
+            return;
+        }
+
+
+        const showId =
+            showIdInput.value;
+
 
         try {
 
             let response;
 
+
+            // ------------------------------------------
+            // UPDATE EXISTING SHOW
+            // ------------------------------------------
+
             if (showId) {
-                response = await fetch(
-                    `/api/admin/shows/${showId}`,
-                    {
-                        method: "PUT",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+                response =
+                    await fetch(
+                        `/api/admin/shows/${showId}`,
+                        {
+                            method: "PUT",
 
-                        body:
-                            JSON.stringify(showData)
-                    }
-                );
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${adminToken}`
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    showData
+                                )
+                        }
+                    );
+
             } else {
-                response = await fetch(
-                    "/api/admin/shows",
-                    {
-                        method: "POST",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+                // --------------------------------------
+                // ADD NEW SHOW
+                // --------------------------------------
 
-                        body:
-                            JSON.stringify(showData)
-                    }
-                );
+                response =
+                    await fetch(
+                        "/api/admin/shows",
+                        {
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                "Authorization":
+                                    `Bearer ${adminToken}`
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    showData
+                                )
+                        }
+                    );
             }
+
 
             const result =
                 await response.json();
 
+
+            // Admin session expired
+            if (
+                response.status === 401 ||
+                response.status === 403
+            ) {
+
+                sessionStorage.removeItem(
+                    "admin"
+                );
+
+                sessionStorage.removeItem(
+                    "adminToken"
+                );
+
+
+                alert(
+                    result.message ||
+                    "Your admin session has expired."
+                );
+
+
+                window.location.href =
+                    "/admin-login.html";
+
+                return;
+            }
+
+
             if (!response.ok) {
+
                 showMessage.textContent =
                     result.message ||
                     "Unable to save show";
@@ -206,18 +451,23 @@ showForm.addEventListener(
                 return;
             }
 
+
             showMessage.textContent =
                 result.message;
 
+
             resetForm();
+
 
             await loadShows();
 
         } catch (error) {
+
             console.error(
                 "Error saving show:",
                 error
             );
+
 
             showMessage.textContent =
                 "Unable to save show.";
@@ -225,56 +475,98 @@ showForm.addEventListener(
     }
 );
 
+
+// ======================================================
+// START EDIT
+// ======================================================
+
 function startEdit(showId) {
-    const show = currentShows.find(
-        (item) => item.id === showId
-    );
+
+    const show =
+        currentShows.find(
+            (item) =>
+                item.id === showId
+        );
+
 
     if (!show) {
         return;
     }
 
-    showIdInput.value = show.id;
+
+    showIdInput.value =
+        show.id;
+
 
     titleInput.value =
         show.title;
 
+
     descriptionInput.value =
         show.description || "";
 
+
+    // Format date for HTML date input
     const date =
-        new Date(show.show_date);
+        new Date(
+            show.show_date
+        );
+
 
     const year =
         date.getFullYear();
 
+
     const month =
-        String(date.getMonth() + 1)
-            .padStart(2, "0");
+        String(
+            date.getMonth() + 1
+        ).padStart(
+            2,
+            "0"
+        );
+
 
     const day =
-        String(date.getDate())
-            .padStart(2, "0");
+        String(
+            date.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
 
     dateInput.value =
         `${year}-${month}-${day}`;
 
+
     timeInput.value =
-        show.show_time.substring(0, 5);
+        show.show_time
+            .substring(
+                0,
+                5
+            );
+
 
     priceInput.value =
-        Number(show.price);
+        Number(
+            show.price
+        );
+
 
     formTitle.textContent =
         "Edit Show";
 
+
     saveButton.textContent =
         "Update Show";
+
 
     cancelEditButton.style.display =
         "inline-block";
 
+
     showMessage.textContent = "";
+
 
     window.scrollTo({
         top: 0,
@@ -282,40 +574,65 @@ function startEdit(showId) {
     });
 }
 
+
+// ======================================================
+// CANCEL EDIT
+// ======================================================
+
 cancelEditButton.addEventListener(
     "click",
     () => {
+
         resetForm();
+
 
         showMessage.textContent =
             "Edit cancelled.";
     }
 );
 
+
+// ======================================================
+// RESET FORM
+// ======================================================
+
 function resetForm() {
+
     showForm.reset();
 
+
     showIdInput.value = "";
+
 
     formTitle.textContent =
         "Add New Show";
 
+
     saveButton.textContent =
         "Add Show";
+
 
     cancelEditButton.style.display =
         "none";
 }
 
+
+// ======================================================
+// DELETE SHOW
+// ======================================================
+
 async function deleteShow(showId) {
+
     const confirmed =
         confirm(
             "Are you sure you want to delete this show?"
         );
 
+
     if (!confirmed) {
         return;
     }
+
 
     try {
 
@@ -323,14 +640,52 @@ async function deleteShow(showId) {
             await fetch(
                 `/api/admin/shows/${showId}`,
                 {
-                    method: "DELETE"
+                    method: "DELETE",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${adminToken}`
+
+                    }
                 }
             );
+
 
         const result =
             await response.json();
 
+
+        // Token expired
+        if (
+            response.status === 401 ||
+            response.status === 403
+        ) {
+
+            sessionStorage.removeItem(
+                "admin"
+            );
+
+            sessionStorage.removeItem(
+                "adminToken"
+            );
+
+
+            alert(
+                result.message ||
+                "Your admin session has expired."
+            );
+
+
+            window.location.href =
+                "/admin-login.html";
+
+            return;
+        }
+
+
         if (!response.ok) {
+
             alert(
                 result.message ||
                 "Unable to delete show"
@@ -339,16 +694,24 @@ async function deleteShow(showId) {
             return;
         }
 
-        alert(result.message);
+
+        alert(
+            result.message
+        );
+
 
         await loadShows();
 
     } catch (error) {
+
         console.error(
             "Error deleting show:",
             error
         );
 
-        alert("Unable to delete show.");
+
+        alert(
+            "Unable to delete show."
+        );
     }
 }
