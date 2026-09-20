@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | TheatreBooking</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo">TheatreBooking Admin</h1>
+
+            <nav>
+                <a href="index.html">View Website</a>
+                <a href="#" id="logout-btn">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-dashboard">
+
+        <section class="admin-welcome">
+
+            <h2>
+                Welcome,
+                <span id="admin-name">Admin</span>
+            </h2>
+
+            <p>
+                Manage theatre shows and customer bookings.
+            </p>
+
+        </section>
+
+        <section class="admin-cards">
+
+            <div class="admin-card">
+
+                <h3>Manage Shows</h3>
+
+                <p>
+                    Add new shows, edit show information,
+                    and delete shows.
+                </p>
+
+                <a
+                    href="admin-shows.html"
+                    class="btn"
+                >
+                    Manage Shows
+                </a>
+
+            </div>
+
+            <div class="admin-card">
+
+                <h3>View Bookings</h3>
+
+                <p>
+                    View customer bookings and selected seats.
+                </p>
+
+                <a
+                    href="admin-bookings.html"
+                    class="btn"
+                >
+                    View Bookings
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Theatre Ticket Booking System</p>
+    </footer>
+
+    <script src="js/admin-dashboard.js"></script>
+
+</body>
+</html>
