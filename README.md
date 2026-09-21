@@ -1,76 +1,62 @@
-# Theatre Ticket Booking System
+# 🎭 Theatre Ticket Booking System
 
-A full-stack web-based theatre ticket booking system developed using Node.js, Express.js, MySQL, HTML, CSS, and JavaScript.
+A full-stack web application for browsing theatre shows, selecting seats, making bookings, and managing shows and reservations through an admin panel.
 
-The system allows customers to browse available theatre shows, select seats, enter their details, and reserve tickets online. It also includes an admin panel for managing shows and viewing customer bookings.
-
-Repository:
-
+🔗 Repository:
 https://github.com/kasungaherath/theatre-ticket-booking-system
 
-## Features
+## ✨ Features
 
-### Customer Features
+### Customer
 
-* View available theatre shows
-* View show title, description, date, time, and ticket price
-* Select a theatre show
-* View available and booked seats
+* Browse available theatre shows
+* View show details, date, time, and ticket price
+* Select available seats
+* View booked and available seats
 * Select multiple seats
-* Automatically calculate the total ticket price
-* Enter customer information
-* Create theatre ticket bookings
-* Prevent already-booked seats from being booked again
-* View booking confirmation
-* Responsive interface for desktop and mobile devices
+* Automatically calculate total price
+* Enter customer details
+* Confirm bookings
+* Prevent duplicate seat bookings
+* Responsive interface for desktop and mobile
 
-### Admin Features
+### Admin
 
 * Secure admin login
-* Password verification using bcrypt
-* JWT-based admin authentication
+* JWT-based authentication
 * Admin dashboard
-* Add new theatre shows
-* Edit existing theatre shows
-* Delete shows
-* Prevent deletion of shows that already have bookings
+* Add, edit, and delete shows
 * View customer bookings
-* View customer names and email addresses
-* View selected seats
-* View show information associated with each booking
-* Admin logout
+* View booked seats and customer details
+* Logout functionality
 
-## Technologies Used
+## 🛠️ Tech Stack
 
-### Frontend
+**Frontend**
 
-* HTML5
-* CSS3
+* HTML
+* CSS
 * JavaScript
 
-### Backend
+**Backend**
 
 * Node.js
 * Express.js
 
-### Database
+**Database**
 
 * MySQL
 
-### Authentication and Security
+**Security & Packages**
 
 * bcrypt
-* JSON Web Tokens (JWT)
-* dotenv
-* Parameterized SQL queries
-
-### Other Packages
-
+* JSON Web Tokens
 * mysql2
+* dotenv
 * cors
 * nodemon
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 theatre-ticket-booking-system/
@@ -89,10 +75,8 @@ theatre-ticket-booking-system/
 │   ├── admin-dashboard.html
 │   ├── admin-shows.html
 │   ├── admin-bookings.html
-│   │
 │   ├── css/
 │   │   └── style.css
-│   │
 │   └── js/
 │       ├── script.js
 │       ├── seat-selection.js
@@ -103,16 +87,15 @@ theatre-ticket-booking-system/
 │       ├── admin-shows.js
 │       └── admin-bookings.js
 │
-├── .env
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
 └── README.md
 ```
 
-## Database Structure
+## 🗄️ Database
 
-The system uses the following MySQL tables:
+The system uses these MySQL tables:
 
 * `users`
 * `shows`
@@ -120,168 +103,52 @@ The system uses the following MySQL tables:
 * `bookings`
 * `booking_seats`
 
-### Users Table
-
-Stores customer and administrator information.
-
-Main columns:
-
-```text
-id
-name
-email
-password
-role
-```
-
-### Shows Table
-
-Stores theatre show information.
-
-Main columns:
-
-```text
-id
-title
-description
-show_date
-show_time
-price
-```
-
-### Seats Table
-
-Stores physical theatre seat numbers.
-
-Example:
-
-```text
-A1
-A2
-A3
-...
-B1
-B2
-...
-C10
-```
-
-### Bookings Table
-
-Stores booking information and connects users with shows.
-
-Main columns:
-
-```text
-id
-user_id
-show_id
-booking_date
-```
-
-### Booking Seats Table
-
-Connects bookings with the seats selected by customers.
-
-Main columns:
-
-```text
-id
-booking_id
-seat_id
-```
-
-## Database Relationships
-
-The main database relationships are:
+Main relationships:
 
 ```text
 USERS
-  │
-  │ one-to-many
-  ▼
+  ↓
 BOOKINGS
-  │
-  │ one-to-many
-  ▼
+  ↓
 BOOKING_SEATS
-  │
-  │ many-to-one
-  ▼
+  ↓
 SEATS
-```
 
-Shows are also connected to bookings:
-
-```text
 SHOWS
-  │
-  │ one-to-many
-  ▼
+  ↓
 BOOKINGS
 ```
 
-A seat is not permanently marked as booked.
+Seat availability is calculated per show, allowing the same physical seat to be used for different performances.
 
-Seat availability is calculated separately for each show. This allows the same physical seat to be booked for different shows while preventing duplicate bookings for the same show.
+## 🚀 Installation
 
-## Installation
-
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/kasungaherath/theatre-ticket-booking-system.git
 ```
 
-### 2. Open the Project Folder
+### 2. Open the project
 
 ```bash
 cd theatre-ticket-booking-system
 ```
 
-### 3. Install Dependencies
-
-Run:
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-This installs all packages listed in `package.json`.
-
-### 4. Install and Start MySQL
-
-Make sure MySQL Server is installed and running.
-
-MySQL Workbench can be used to manage the database.
-
-### 5. Create the Database
-
-Open MySQL Workbench and run:
+### 4. Create the database
 
 ```sql
 CREATE DATABASE theatre_ticket_booking;
-```
-
-Then select the database:
-
-```sql
 USE theatre_ticket_booking;
 ```
 
-### 6. Create the Required Tables
-
-The application requires the following tables:
-
-```text
-users
-shows
-seats
-bookings
-booking_seats
-```
-
-The database should contain the seat records required by the theatre, such as:
+Create the required tables and add theatre seats such as:
 
 ```text
 A1 - A10
@@ -289,11 +156,9 @@ B1 - B10
 C1 - C10
 ```
 
-### 7. Configure Environment Variables
+### 5. Configure environment variables
 
-Create a `.env` file in the project root.
-
-Example:
+Create a `.env` file in the project root:
 
 ```env
 DB_HOST=localhost
@@ -303,40 +168,26 @@ DB_NAME=theatre_ticket_booking
 JWT_SECRET=YOUR_SECRET_KEY
 ```
 
-Replace `YOUR_MYSQL_PASSWORD` with your local MySQL password.
-
-Replace `YOUR_SECRET_KEY` with a private JWT secret.
-
-The `.env` file should never be uploaded to GitHub.
-
-The `.gitignore` file should include:
+Make sure `.gitignore` contains:
 
 ```text
 node_modules/
 .env
 ```
 
-## Running the Application
+### 6. Start the application
 
-### Development Mode
-
-Run:
+Development mode:
 
 ```bash
 npm run dev
 ```
 
-This starts the application using Nodemon.
-
-### Normal Mode
-
-Run:
+Or:
 
 ```bash
 npm start
 ```
-
-### Open the Website
 
 Open:
 
@@ -344,394 +195,86 @@ Open:
 http://localhost:3000
 ```
 
-## Customer Booking Flow
+## 🔐 Admin Access
 
-The customer booking process is:
-
-```text
-Homepage
-   ↓
-View Shows
-   ↓
-Select Show
-   ↓
-View Available Seats
-   ↓
-Select Seats
-   ↓
-Continue Booking
-   ↓
-Enter Customer Details
-   ↓
-Confirm Booking
-   ↓
-Booking Saved in MySQL
-   ↓
-Booking Confirmation
-```
-
-After a seat has been booked for a particular show, the seat is displayed as unavailable for that show.
-
-The same seat can still be booked for another show.
-
-## Admin Access
-
-Start the application:
-
-```bash
-npm run dev
-```
-
-Then open:
+Open:
 
 ```text
 http://localhost:3000/admin-login.html
 ```
 
-If the default values in `backend/create-admin.js` have not been changed, the admin login is:
+If the default values in `backend/create-admin.js` are unchanged:
 
 ```text
 Email: admin@theatre.com
 Password: Admin123
 ```
 
-After successful login, the administrator is redirected to:
-
-```text
-http://localhost:3000/admin-dashboard.html
-```
-
-The admin dashboard provides access to:
-
-* Manage Shows
-* View Bookings
-* Logout
-
-### Creating the Admin Account
-
-If the admin account has not already been created, run:
+If the admin account has not been created yet, run:
 
 ```bash
 node backend/create-admin.js
 ```
 
-The script creates the admin account and stores the password as a bcrypt hash in MySQL.
+After login, the admin can manage shows and view bookings.
 
-If the account already exists, MySQL may return a duplicate email error. In that case, the existing admin account can be used.
+> For real deployment, change the default admin password and never publish production credentials.
 
-For a production system, the default admin password should be changed and real credentials should never be published.
+## 🔌 Main API Endpoints
 
-## Admin Show Management
-
-The administrator can perform CRUD operations on theatre shows.
-
-CRUD means:
+### Customer
 
 ```text
-Create
-Read
-Update
-Delete
-```
-
-The admin can:
-
-```text
-Add Show
-Edit Show
-Delete Show
-View Shows
-```
-
-Shows that already have customer bookings cannot be deleted because of database foreign-key protection.
-
-## Admin Booking Management
-
-The administrator can view customer reservations.
-
-The booking management page displays information such as:
-
-```text
-Booking ID
-Customer Name
-Customer Email
-Show
-Show Date
-Show Time
-Selected Seats
-Booking Date
-```
-
-## Main API Endpoints
-
-### General / Customer APIs
-
-#### Test Database Connection
-
-```text
-GET /api/test-db
-```
-
-Checks whether the Node.js backend can communicate with MySQL.
-
-#### Get Shows
-
-```text
-GET /api/shows
-```
-
-Returns all theatre shows.
-
-#### Get Seat Availability
-
-```text
-GET /api/shows/:showId/seats
-```
-
-Returns all theatre seats and determines whether each seat is available or booked for the selected show.
-
-Example:
-
-```text
-GET /api/shows/1/seats
-```
-
-#### Create Booking
-
-```text
+GET  /api/shows
+GET  /api/shows/:showId/seats
 POST /api/bookings
 ```
 
-Creates a customer booking and stores the selected seats.
-
-### Admin APIs
-
-#### Admin Login
+### Admin
 
 ```text
-POST /api/admin/login
-```
-
-Authenticates an administrator and returns a JWT token.
-
-#### Add Show
-
-```text
-POST /api/admin/shows
-```
-
-Creates a new theatre show.
-
-Requires admin authentication.
-
-#### Update Show
-
-```text
-PUT /api/admin/shows/:id
-```
-
-Updates an existing theatre show.
-
-Requires admin authentication.
-
-#### Delete Show
-
-```text
+POST   /api/admin/login
+POST   /api/admin/shows
+PUT    /api/admin/shows/:id
 DELETE /api/admin/shows/:id
+GET    /api/admin/bookings
 ```
 
-Deletes a show if it has no associated bookings.
+Admin routes require JWT authentication.
 
-Requires admin authentication.
+## 🛡️ Security
 
-#### View Bookings
+The project includes:
 
-```text
-GET /api/admin/bookings
-```
+* Password hashing with bcrypt
+* JWT-protected admin routes
+* Environment variables for sensitive configuration
+* Parameterized SQL queries
+* Backend validation
+* Seat availability checks
+* Duplicate booking prevention
 
-Returns customer booking information.
+## 📱 Responsive Design
 
-Requires admin authentication.
+The interface is responsive and supports:
 
-## Security Features
+* Mobile-friendly navigation
+* Responsive show cards
+* Mobile seat layouts
+* Responsive forms
+* Admin pages that adapt to smaller screens
 
-The project includes several security measures.
+## 🔮 Future Improvements
 
-### Password Hashing
-
-Passwords are hashed using:
-
-```text
-bcrypt
-```
-
-Plain-text passwords are not intentionally stored in the database.
-
-### JWT Authentication
-
-Admin routes are protected using JSON Web Tokens.
-
-After a successful admin login, the backend generates a temporary JWT.
-
-Protected requests use:
-
-```text
-Authorization: Bearer TOKEN
-```
-
-### Environment Variables
-
-Sensitive information is stored in:
-
-```text
-.env
-```
-
-Examples include:
-
-```text
-MySQL password
-JWT secret
-Database configuration
-```
-
-### Parameterized SQL Queries
-
-Database queries use placeholders such as:
-
-```sql
-WHERE email = ?
-```
-
-This reduces the risk of SQL injection.
-
-### Backend Validation
-
-The backend validates:
-
-* Required booking information
-* Email format
-* Password length
-* Show IDs
-* Seat IDs
-* Duplicate seat IDs
-* Existing shows
-* Existing seats
-* Seat availability
-* Show ticket prices
-
-## Seat Booking Protection
-
-Before creating a booking, the backend checks whether the selected seats are already booked for the requested show.
-
-If a seat is already booked, the request is rejected.
-
-Example response:
-
-```text
-One or more selected seats are already booked
-```
-
-This prevents customers from intentionally booking an already reserved seat through the API.
-
-## Git and GitHub
-
-Git was used throughout development.
-
-Repository:
-
-https://github.com/kasungaherath/theatre-ticket-booking-system
-
-Example workflow:
-
-```bash
-git status
-git add .
-git commit -m "Describe the changes"
-git push
-```
-
-Example project commits include:
-
-```text
-Initial project setup
-Add database connection and shows API
-Add frontend and display shows
-Complete customer booking flow
-Add admin show and booking management
-Improve responsive UI and validation
-Add project documentation
-Finalize theatre ticket booking system
-```
-
-Sensitive files such as `.env` and large dependency folders such as `node_modules` are excluded from Git.
-
-## Responsive Design
-
-The interface includes responsive CSS for smaller screens.
-
-Mobile improvements include:
-
-* Single-column show cards
-* Responsive navigation
-* Smaller theatre seat buttons
-* Five-column seat layout on smaller screens
-* Responsive customer forms
-* Responsive admin cards
-* Responsive booking information
-
-## Future Improvements
-
-Possible future improvements include:
-
-* Customer registration and login
-* Customer booking history
+* Customer login and booking history
+* Online payments
+* Email confirmations
+* QR-code tickets
 * Booking cancellation
-* Online payment integration
-* Email booking confirmations
-* QR-code ticket generation
 * Multiple theatre halls
-* Multiple seat categories
-* VIP seat pricing
 * Search and filtering
-* Show posters/images
 * Admin analytics dashboard
-* Revenue reports
-* Customer profile management
-* Password reset functionality
-* Refresh-token authentication
-* Deployment to a cloud platform
 
-## Project Summary
-
-The Theatre Ticket Booking System demonstrates the development of a full-stack web application using:
-
-```text
-Frontend
-HTML
-CSS
-JavaScript
-
-Backend
-Node.js
-Express.js
-
-Database
-MySQL
-
-Security
-bcrypt
-JWT
-dotenv
-
-Version Control
-Git
-GitHub
-```
-
-The system provides both customer and administrator functionality and demonstrates frontend/backend communication, REST API development, relational database design, authentication, validation, responsive web design, and version control.
-
-## Author
+## 👨‍💻 Author
 
 Kasunga Herath
