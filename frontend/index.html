@@ -2,52 +2,348 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Theatre Ticket Booking</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Browse upcoming theatre shows, choose your seats and reserve tickets online."
+    >
+
+    <title>TheatreBooking | Theatre Ticket Booking</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <header class="navbar">
-        <div class="container">
-            <h1 class="logo">TheatreBooking</h1>
+    <!-- ========================================
+         HEADER
+    ========================================= -->
 
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="#shows">Shows</a>
+    <header class="site-header">
+
+        <div class="container header-inner">
+
+            <a href="index.html" class="brand">
+                TheatreBooking
+            </a>
+
+            <nav class="main-nav">
+
+                <a href="index.html" class="active">
+                    Home
+                </a>
+
+                <a href="#shows">
+                    Shows
+                </a>
+
+                <a
+                    href="admin-login.html"
+                    class="admin-nav-link"
+                >
+                    Admin
+                </a>
+
             </nav>
+
         </div>
+
     </header>
+
 
     <main>
 
+        <!-- ========================================
+             HERO
+        ========================================= -->
+
         <section class="hero">
-            <div class="hero-content">
-                <h2>Book Your Theatre Experience</h2>
 
-                <p>
-                    Discover upcoming shows, choose your seats,
-                    and reserve your tickets online.
-                </p>
+            <div class="hero-light hero-light-one"></div>
+            <div class="hero-light hero-light-two"></div>
 
-                <a href="#shows" class="btn">View Shows</a>
+
+            <div class="container hero-layout">
+
+                <!-- LEFT CONTENT -->
+
+                <div class="hero-content">
+
+                    <p class="eyebrow">
+                        THEATRE TICKETING MADE SIMPLE
+                    </p>
+
+                    <h1>
+                        A better way to experience theatre.
+                    </h1>
+
+                    <p class="hero-description">
+                        Discover upcoming shows, choose the seats you want,
+                        and complete your reservation through a simple and
+                        seamless booking experience.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="#shows"
+                            class="primary-button"
+                        >
+                            Browse Upcoming Shows
+                        </a>
+
+                        <a
+                            href="#booking-process"
+                            class="secondary-button"
+                        >
+                            How It Works
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT VISUAL -->
+
+                <div class="hero-art">
+
+                    <div class="theatre-card">
+
+                        <div class="theatre-card-header">
+
+                            <span>
+                                2026 SEASON
+                            </span>
+
+                            <span class="live-indicator">
+                                NOW BOOKING
+                            </span>
+
+                        </div>
+
+
+                        <div class="theatre-stage">
+
+                            <div class="curtain curtain-left"></div>
+                            <div class="curtain curtain-right"></div>
+
+                            <div class="stage-light"></div>
+
+                            <div class="stage-message">
+
+                                <span>
+                                    LIVE
+                                </span>
+
+                                <strong>
+                                    THEATRE
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="theatre-card-footer">
+
+                            <div>
+
+                                <span class="small-label">
+                                    Discover
+                                </span>
+
+                                <strong>
+                                    Great Shows
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span class="small-label">
+                                    Reserve
+                                </span>
+
+                                <strong>
+                                    Your Seat
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </section>
 
-        <section id="shows" class="shows-section">
 
-            <h2>Available Shows</h2>
+        <!-- ========================================
+             HOW IT WORKS
+        ========================================= -->
 
-            <p class="section-description">
-                Browse our upcoming theatre shows.
-            </p>
+        <section
+            id="booking-process"
+            class="booking-process"
+        >
 
-            <div id="shows-container" class="shows-container">
+            <div class="container process-layout">
 
-                <p>Shows will appear here.</p>
+                <div class="process-heading">
+
+                    <p class="section-kicker">
+                        SIMPLE BOOKING
+                    </p>
+
+                    <h2>
+                        From show to seat in three steps.
+                    </h2>
+
+                    <p>
+                        Everything you need to reserve your theatre
+                        experience without unnecessary steps.
+                    </p>
+
+                </div>
+
+
+                <div class="process-list">
+
+                    <article class="process-item">
+
+                        <span class="process-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Choose a show
+                            </h3>
+
+                            <p>
+                                Browse upcoming shows and select the
+                                performance you want to attend.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="process-item">
+
+                        <span class="process-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Select your seats
+                            </h3>
+
+                            <p>
+                                View current availability and choose
+                                your preferred seats.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="process-item">
+
+                        <span class="process-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Confirm your booking
+                            </h3>
+
+                            <p>
+                                Enter your details and receive your
+                                booking confirmation instantly.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             UPCOMING SHOWS
+        ========================================= -->
+
+        <section
+            id="shows"
+            class="shows-section"
+        >
+
+            <div class="container">
+
+                <div class="shows-heading">
+
+                    <div>
+
+                        <p class="section-kicker">
+                            CURRENT PROGRAMME
+                        </p>
+
+                        <h2>
+                            Upcoming Shows
+                        </h2>
+
+                    </div>
+
+
+                    <p>
+                        Explore upcoming productions and reserve your
+                        preferred seats before they are taken.
+                    </p>
+
+                </div>
+
+
+                <!-- JavaScript loads shows here -->
+
+                <div
+                    id="shows-container"
+                    class="shows-container"
+                >
+
+                    <div class="loading-state">
+
+                        <div class="loading-spinner"></div>
+
+                        <p>
+                            Loading upcoming shows...
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -55,9 +351,47 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Theatre Ticket Booking System</p>
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-inner">
+
+            <div>
+
+                <a
+                    href="index.html"
+                    class="footer-brand"
+                >
+                    TheatreBooking
+                </a>
+
+                <p>
+                    A modern theatre ticket reservation experience.
+                </p>
+
+            </div>
+
+
+            <div class="footer-details">
+
+                <span>
+                    Theatre Ticket Booking System
+                </span>
+
+                <span>
+                    2026
+                </span>
+
+            </div>
+
+        </div>
+
     </footer>
+
 
     <script src="js/script.js"></script>
 
