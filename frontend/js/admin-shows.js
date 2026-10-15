@@ -36,6 +36,11 @@ const descriptionInput =
         "show-description"
     );
 
+const posterInput =
+    document.getElementById(
+        "show-poster"
+    );
+
 const dateInput =
     document.getElementById(
         "show-date"
@@ -216,6 +221,11 @@ function displayShows() {
 
 
             card.innerHTML = `
+                ${
+                    show.poster_url
+                        ? `<div class="admin-show-thumb" style="background-image: url('${show.poster_url}');"></div>`
+                        : ""
+                }
                 <div>
 
                     <h3>
@@ -312,6 +322,11 @@ showForm.addEventListener(
                 descriptionInput
                     .value
                     .trim(),
+
+            poster_url:
+                posterInput
+                    ? posterInput.value.trim()
+                    : "",
 
             show_date:
                 dateInput.value,
@@ -504,6 +519,11 @@ function startEdit(showId) {
 
     descriptionInput.value =
         show.description || "";
+
+    if (posterInput) {
+        posterInput.value =
+            show.poster_url || "";
+    }
 
 
     // Format date for HTML date input

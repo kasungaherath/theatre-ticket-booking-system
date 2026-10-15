@@ -23,6 +23,14 @@ app.use(
     )
 );
 
+// Ensure poster_url column exists in shows table
+db.query(
+    "ALTER TABLE shows ADD COLUMN poster_url VARCHAR(500) NULL AFTER description",
+    (err) => {
+        // Silently ignore if column already exists
+    }
+);
+
 
 // ======================================================
 // ADMIN AUTHENTICATION MIDDLEWARE
@@ -938,6 +946,7 @@ app.post(
         const {
             title,
             description,
+            poster_url,
             show_date,
             show_time,
             price
@@ -984,12 +993,13 @@ app.post(
             (
                 title,
                 description,
+                poster_url,
                 show_date,
                 show_time,
                 price
             )
 
-            VALUES (?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?)
         `;
 
 
@@ -1000,6 +1010,9 @@ app.post(
                 description
                     ? description.trim()
                     : "",
+                poster_url
+                    ? poster_url.trim()
+                    : null,
                 show_date,
                 show_time,
                 Number(price)
@@ -1050,6 +1063,7 @@ app.put(
         const {
             title,
             description,
+            poster_url,
             show_date,
             show_time,
             price
@@ -1109,6 +1123,7 @@ app.put(
             SET
                 title = ?,
                 description = ?,
+                poster_url = ?,
                 show_date = ?,
                 show_time = ?,
                 price = ?
@@ -1124,6 +1139,9 @@ app.put(
                 description
                     ? description.trim()
                     : "",
+                poster_url
+                    ? poster_url.trim()
+                    : null,
                 show_date,
                 show_time,
                 Number(price),

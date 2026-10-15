@@ -43,10 +43,26 @@ function loadShowDetails() {
             ticketPrice = Number(selectedShow.price);
 
             const showDate = new Date(selectedShow.show_date);
-            const formattedDate = showDate.toLocaleDateString();
+            const formattedDate = showDate.toLocaleDateString(undefined, {
+                weekday: "short",
+                month: "short",
+                day: "numeric",
+                year: "numeric"
+            });
 
-            showInfo.textContent =
-                `${selectedShow.title} | ${formattedDate} | ${selectedShow.show_time} | Rs. ${ticketPrice.toFixed(2)} per seat`;
+            showInfo.innerHTML = `
+                <div class="selected-show-banner">
+                    ${selectedShow.poster_url ? `<img src="${selectedShow.poster_url}" alt="${selectedShow.title}" class="selected-show-poster">` : ""}
+                    <div class="selected-show-meta">
+                        <strong class="selected-show-title">${selectedShow.title}</strong>
+                        <div class="selected-show-details">
+                            <span><svg class="detail-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>${formattedDate}</span>
+                            <span><svg class="detail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>${selectedShow.show_time.substring(0, 5)}</span>
+                            <span><svg class="detail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v5a2 2 0 0 0 0 4v5H4v-5a2 2 0 0 0 0-4Z"/><path d="M15 8v2m0 4v2"/></svg>Rs. ${ticketPrice.toFixed(2)} per seat</span>
+                        </div>
+                    </div>
+                </div>
+            `;
         })
         .catch((error) => {
             console.error("Error loading show:", error);
