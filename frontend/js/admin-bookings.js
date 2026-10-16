@@ -4,13 +4,11 @@ const adminData =
 const adminToken =
     sessionStorage.getItem("adminToken");
 
-
 if (!adminData || !adminToken) {
 
     window.location.href =
         "/admin-login.html";
 }
-
 
 const bookingsContainer =
     document.getElementById(
@@ -22,7 +20,6 @@ const logoutButton =
         "logout-btn"
     );
 
-
 document.addEventListener(
     "DOMContentLoaded",
     () => {
@@ -32,17 +29,11 @@ document.addEventListener(
     }
 );
 
-
-// ======================================================
-// LOGOUT
-// ======================================================
-
 logoutButton.addEventListener(
     "click",
     (event) => {
 
         event.preventDefault();
-
 
         sessionStorage.removeItem(
             "admin"
@@ -52,22 +43,15 @@ logoutButton.addEventListener(
             "adminToken"
         );
 
-
         window.location.href =
             "/admin-login.html";
     }
 );
 
-
-// ======================================================
-// LOAD BOOKINGS
-// ======================================================
-
 async function loadBookings() {
 
     bookingsContainer.innerHTML =
         "<p>Loading bookings...</p>";
-
 
     try {
 
@@ -84,10 +68,8 @@ async function loadBookings() {
                 }
             );
 
-
         const result =
             await response.json();
-
 
         // Token expired or invalid
         if (
@@ -103,19 +85,16 @@ async function loadBookings() {
                 "adminToken"
             );
 
-
             alert(
                 result.message ||
                 "Your admin session has expired."
             );
-
 
             window.location.href =
                 "/admin-login.html";
 
             return;
         }
-
 
         if (!response.ok) {
 
@@ -126,7 +105,6 @@ async function loadBookings() {
 
         }
 
-
         displayBookings(result);
 
     } catch (error) {
@@ -136,21 +114,14 @@ async function loadBookings() {
             error
         );
 
-
         bookingsContainer.innerHTML =
             "<p>Unable to load bookings.</p>";
     }
 }
 
-
-// ======================================================
-// DISPLAY BOOKINGS
-// ======================================================
-
 function displayBookings(bookings) {
 
     bookingsContainer.innerHTML = "";
-
 
     if (bookings.length === 0) {
 
@@ -160,7 +131,6 @@ function displayBookings(bookings) {
         return;
     }
 
-
     bookings.forEach(
         (booking) => {
 
@@ -169,35 +139,27 @@ function displayBookings(bookings) {
                     "div"
                 );
 
-
             bookingCard.classList.add(
                 "admin-booking-card"
             );
 
-
-            // Format show date
             const showDate =
                 new Date(
                     booking.show_date
                 );
 
-
             const formattedShowDate =
                 showDate
                     .toLocaleDateString();
 
-
-            // Format booking date
             const bookingDate =
                 new Date(
                     booking.booking_date
                 );
 
-
             const formattedBookingDate =
                 bookingDate
                     .toLocaleString();
-
 
             bookingCard.innerHTML = `
                 <div class="booking-card-header">
@@ -226,7 +188,6 @@ function displayBookings(bookings) {
 
                     </div>
 
-
                     <div>
 
                         <strong>
@@ -238,7 +199,6 @@ function displayBookings(bookings) {
                         </p>
 
                     </div>
-
 
                     <div>
 
@@ -252,7 +212,6 @@ function displayBookings(bookings) {
 
                     </div>
 
-
                     <div>
 
                         <strong>
@@ -265,7 +224,6 @@ function displayBookings(bookings) {
 
                     </div>
 
-
                     <div>
 
                         <strong>
@@ -277,7 +235,6 @@ function displayBookings(bookings) {
                         </p>
 
                     </div>
-
 
                     <div>
 
@@ -293,7 +250,6 @@ function displayBookings(bookings) {
 
                 </div>
             `;
-
 
             bookingsContainer
                 .appendChild(

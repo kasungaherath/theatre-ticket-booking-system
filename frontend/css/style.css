@@ -1,7 +1,4 @@
-/* =========================================================
-   THEATRE BOOKING SYSTEM
-   CINEMA INTERFACE
-========================================================= */
+
 
 :root {
     --dark: #0d0e10;
@@ -56,22 +53,15 @@
     --transition: 180ms ease;
 }
 
-
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
-
 
 body {
     min-height: 100vh;
@@ -92,11 +82,9 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-
 a {
     color: inherit;
 }
-
 
 button,
 input,
@@ -105,37 +93,24 @@ select {
     font: inherit;
 }
 
-
 button {
     cursor: pointer;
 }
-
 
 img {
     display: block;
     max-width: 100%;
 }
 
-
 ::selection {
     color: #111111;
     background: var(--gold);
 }
 
-
-/* =========================================================
-   GLOBAL CONTAINER
-========================================================= */
-
 .container {
     width: min(92%, 1180px);
     margin: 0 auto;
 }
-
-
-/* =========================================================
-   HEADER / NAVBAR
-========================================================= */
 
 .site-header,
 .navbar,
@@ -154,7 +129,6 @@ img {
         1px solid rgba(255, 255, 255, 0.07);
 }
 
-
 .header-inner,
 .navbar .container,
 .admin-header-inner {
@@ -166,11 +140,6 @@ img {
 
     gap: 30px;
 }
-
-
-/* =========================================================
-   BRAND
-========================================================= */
 
 .brand,
 .logo {
@@ -187,16 +156,10 @@ img {
         color var(--transition);
 }
 
-
 .brand:hover,
 .logo:hover {
     color: var(--gold);
 }
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
 
 .main-nav,
 .navbar nav,
@@ -206,7 +169,6 @@ img {
 
     gap: 4px;
 }
-
 
 .main-nav a,
 .navbar nav a,
@@ -227,7 +189,6 @@ img {
         background var(--transition);
 }
 
-
 .main-nav a:hover,
 .navbar nav a:hover,
 .admin-nav a:hover,
@@ -239,7 +200,6 @@ img {
         rgba(255, 255, 255, 0.07);
 }
 
-
 .admin-nav-link,
 .logout-link {
     margin-left: 6px;
@@ -247,11 +207,6 @@ img {
     border:
         1px solid rgba(255, 255, 255, 0.14);
 }
-
-
-/* =========================================================
-   HERO
-========================================================= */
 
 .hero {
     position: relative;
@@ -271,7 +226,6 @@ img {
             #1d1914 100%
         );
 }
-
 
 .hero::before {
     content: "";
@@ -296,7 +250,6 @@ img {
         70px 70px;
 }
 
-
 .hero-light {
     position: absolute;
 
@@ -306,7 +259,6 @@ img {
 
     pointer-events: none;
 }
-
 
 .hero-light-one {
     width: 450px;
@@ -319,7 +271,6 @@ img {
         rgba(212, 168, 79, 0.16);
 }
 
-
 .hero-light-two {
     width: 380px;
     height: 380px;
@@ -330,7 +281,6 @@ img {
     background:
         rgba(110, 77, 40, 0.13);
 }
-
 
 .hero-layout {
     position: relative;
@@ -350,11 +300,6 @@ img {
         100px 0;
 }
 
-
-/* =========================================================
-   HERO TEXT
-========================================================= */
-
 .eyebrow,
 .section-kicker {
     color: var(--gold);
@@ -365,11 +310,9 @@ img {
     letter-spacing: 2.4px;
 }
 
-
 .hero-content .eyebrow {
     margin-bottom: 22px;
 }
-
 
 .hero-content h1 {
     max-width: 720px;
@@ -393,7 +336,6 @@ img {
     letter-spacing: -2.5px;
 }
 
-
 .hero-description {
     max-width: 630px;
 
@@ -406,18 +348,12 @@ img {
     line-height: 1.8;
 }
 
-
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
 
     gap: 12px;
 }
-
-
-/* =========================================================
-   PRIMARY BUTTONS
-========================================================= */
 
 .primary-button,
 .secondary-button,
@@ -450,7 +386,6 @@ img {
         border-color var(--transition);
 }
 
-
 .primary-button,
 .btn,
 .book-btn {
@@ -461,7 +396,6 @@ img {
     box-shadow:
         0 12px 26px rgba(212, 168, 79, 0.14);
 }
-
 
 .primary-button:hover,
 .btn:hover,
@@ -475,7 +409,6 @@ img {
         0 15px 32px rgba(212, 168, 79, 0.2);
 }
 
-
 .secondary-button {
     color: #eeeeec;
 
@@ -486,7 +419,6 @@ img {
         1px solid rgba(255, 255, 255, 0.17);
 }
 
-
 .secondary-button:hover {
     transform:
         translateY(-2px);
@@ -495,13 +427,11 @@ img {
         rgba(255, 255, 255, 0.08);
 }
 
-
 .book-btn {
     width: 100%;
 
     margin-top: 16px;
 }
-
 
 .book-btn:disabled {
     color: #898783;
@@ -514,11 +444,6 @@ img {
 
     transform: none;
 }
-
-
-/* =========================================================
-   THEATRE VISUAL
-========================================================= */
 
 .hero-art {
     display: flex;
@@ -629,7 +554,6 @@ img {
     .stack-poster { transition: none; }
 }
 
-
 .theatre-card {
     width: min(100%, 430px);
 
@@ -651,7 +575,6 @@ img {
         rotate(1.5deg);
 }
 
-
 .theatre-card-header {
     padding:
         18px 20px;
@@ -668,11 +591,9 @@ img {
     letter-spacing: 1.6px;
 }
 
-
 .live-indicator {
     color: var(--gold);
 }
-
 
 .theatre-stage {
     position: relative;
@@ -696,7 +617,6 @@ img {
         );
 }
 
-
 .curtain {
     position: absolute;
 
@@ -714,7 +634,6 @@ img {
         );
 }
 
-
 .curtain-left {
     left: -8%;
 
@@ -722,14 +641,12 @@ img {
         skewX(-5deg);
 }
 
-
 .curtain-right {
     right: -8%;
 
     transform:
         skewX(5deg);
 }
-
 
 .stage-light {
     position: absolute;
@@ -758,7 +675,6 @@ img {
         );
 }
 
-
 .stage-message {
     position: relative;
 
@@ -768,7 +684,6 @@ img {
 
     color: white;
 }
-
 
 .stage-message span {
     display: block;
@@ -782,7 +697,6 @@ img {
     letter-spacing: 7px;
 }
 
-
 .stage-message strong {
     font-family:
         Georgia,
@@ -794,7 +708,6 @@ img {
 
     letter-spacing: 2px;
 }
-
 
 .theatre-card-footer {
     padding: 21px;
@@ -810,14 +723,12 @@ img {
         1px solid var(--border-dark);
 }
 
-
 .theatre-card-footer div {
     display: flex;
     flex-direction: column;
 
     gap: 2px;
 }
-
 
 .small-label {
     color: #777672;
@@ -829,7 +740,6 @@ img {
     letter-spacing: 1px;
 }
 
-
 .theatre-card-footer strong {
     color: #e7e6e1;
 
@@ -838,18 +748,12 @@ img {
     font-weight: 550;
 }
 
-
-/* =========================================================
-   BOOKING PROCESS
-========================================================= */
-
 .booking-process {
     padding:
         95px 20px;
 
     background: white;
 }
-
 
 .process-layout {
     display: grid;
@@ -863,12 +767,10 @@ img {
     align-items: start;
 }
 
-
 .process-heading .section-kicker,
 .shows-section .section-kicker {
     color: #94702d;
 }
-
 
 .process-heading h2 {
     max-width: 440px;
@@ -892,19 +794,16 @@ img {
     letter-spacing: -1.3px;
 }
 
-
 .process-heading > p:last-child {
     max-width: 430px;
 
     color: var(--text-grey);
 }
 
-
 .process-list {
     border-top:
         1px solid var(--border);
 }
-
 
 .process-item {
     padding:
@@ -921,7 +820,6 @@ img {
         1px solid var(--border);
 }
 
-
 .process-number {
     color: #9b752e;
 
@@ -931,7 +829,6 @@ img {
 
     font-size: 18px;
 }
-
 
 .process-item h3 {
     margin-bottom: 6px;
@@ -943,7 +840,6 @@ img {
     font-weight: 600;
 }
 
-
 .process-item p {
     max-width: 530px;
 
@@ -952,18 +848,12 @@ img {
     font-size: 14px;
 }
 
-
-/* =========================================================
-   SHOWS SECTION
-========================================================= */
-
 .shows-section {
     padding:
         105px 20px 115px;
 
     background: var(--cream);
 }
-
 
 .shows-heading {
     display: grid;
@@ -978,7 +868,6 @@ img {
 
     margin-bottom: 45px;
 }
-
 
 .shows-heading h2 {
     margin-top: 8px;
@@ -999,17 +888,11 @@ img {
     letter-spacing: -1.4px;
 }
 
-
 .shows-heading > p {
     color: var(--text-grey);
 
     line-height: 1.8;
 }
-
-
-/* =========================================================
-   SHOW CARDS
-========================================================= */
 
 .shows-container {
     display: grid;
@@ -1044,7 +927,6 @@ img {
     opacity: 0.9;
 }
 
-/* Background Flyer Image */
 .show-card-bg {
     position: absolute;
     inset: 0;
@@ -1061,7 +943,6 @@ img {
     z-index: 1;
 }
 
-/* Cinematic Dark Gradient Overlay */
 .show-card-overlay {
     position: absolute;
     inset: 0;
@@ -1077,7 +958,6 @@ img {
     transition: background 0.4s ease;
 }
 
-/* Card Content Layer */
 .show-card-content {
     position: relative;
     z-index: 3;
@@ -1110,7 +990,6 @@ img {
     );
 }
 
-/* Badges on top */
 .show-card-top {
     display: flex;
     align-items: center;
@@ -1151,7 +1030,6 @@ img {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Body */
 .show-card-body {
     margin-top: auto;
     padding-top: 40px;
@@ -1182,7 +1060,6 @@ img {
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
 
-/* Meta tags */
 .show-meta-tags {
     display: flex;
     flex-wrap: wrap;
@@ -1211,7 +1088,6 @@ img {
     flex-shrink: 0;
 }
 
-/* Footer & Price */
 .show-card-footer {
     display: flex;
     align-items: center;
@@ -1246,7 +1122,6 @@ img {
     white-space: nowrap;
 }
 
-/* Book Button */
 .show-card button.book-btn {
     display: inline-flex;
     align-items: center;
@@ -1284,11 +1159,6 @@ img {
     transform: translateX(3px);
 }
 
-
-/* =========================================================
-   LOADING
-========================================================= */
-
 .loading-state {
     grid-column:
         1 / -1;
@@ -1315,7 +1185,6 @@ img {
         var(--radius-medium);
 }
 
-
 .loading-spinner {
     width: 34px;
     height: 34px;
@@ -1332,18 +1201,12 @@ img {
         spin 0.75s linear infinite;
 }
 
-
 @keyframes spin {
     to {
         transform:
             rotate(360deg);
     }
 }
-
-
-/* =========================================================
-   EXISTING INTERNAL PAGES
-========================================================= */
 
 .seat-page,
 .customer-page,
@@ -1359,7 +1222,6 @@ img {
     background: var(--cream);
 }
 
-
 .seat-selection-section,
 .customer-details-section {
     width:
@@ -1367,7 +1229,6 @@ img {
 
     margin: 0 auto;
 }
-
 
 .seat-selection-section > h2,
 .customer-details-section > h2 {
@@ -1385,15 +1246,9 @@ img {
     letter-spacing: -1px;
 }
 
-
-/* =========================================================
-   SEAT PAGE
-========================================================= */
-
 .seat-selection-section {
     text-align: center;
 }
-
 
 #show-info {
     margin: 10px auto 36px;
@@ -1460,7 +1315,6 @@ img {
     stroke-linejoin: round;
 }
 
-
 .screen {
     max-width: 670px;
 
@@ -1492,11 +1346,6 @@ img {
     letter-spacing: 7px;
 }
 
-
-/* =========================================================
-   SEATS
-========================================================= */
-
 .seats-container {
     max-width: 730px;
 
@@ -1510,7 +1359,6 @@ img {
 
     gap: 10px;
 }
-
 
 .seat {
     min-height: 44px;
@@ -1530,7 +1378,6 @@ img {
         box-shadow var(--transition);
 }
 
-
 .seat.available {
     color: #315948;
 
@@ -1538,7 +1385,6 @@ img {
 
     border-color: #c1d9cd;
 }
-
 
 .seat.available:hover {
     transform:
@@ -1550,7 +1396,6 @@ img {
         0 7px 15px rgba(63, 118, 94, 0.13);
 }
 
-
 .seat.selected {
     color: #6b501e;
 
@@ -1559,7 +1404,6 @@ img {
     border-color: #dfc17b;
 }
 
-
 .seat.booked {
     color: #929296;
 
@@ -1567,11 +1411,6 @@ img {
 
     cursor: not-allowed;
 }
-
-
-/* =========================================================
-   SEAT LEGEND
-========================================================= */
 
 .seat-legend {
     margin-bottom: 34px;
@@ -1584,7 +1423,6 @@ img {
 
     gap: 10px;
 }
-
 
 .seat-legend div {
     display: flex;
@@ -1608,7 +1446,6 @@ img {
     font-size: 12px;
 }
 
-
 .legend-box {
     width: 12px;
     height: 12px;
@@ -1616,25 +1453,17 @@ img {
     border-radius: 3px;
 }
 
-
 .legend-box.available {
     background: var(--available);
 }
-
 
 .legend-box.selected {
     background: var(--selected);
 }
 
-
 .legend-box.booked {
     background: var(--booked);
 }
-
-
-/* =========================================================
-   COMMON CARDS
-========================================================= */
 
 .booking-summary,
 .customer-booking-summary,
@@ -1657,11 +1486,6 @@ img {
         var(--shadow-small);
 }
 
-
-/* =========================================================
-   BOOKING SUMMARY
-========================================================= */
-
 .booking-summary {
     max-width: 530px;
 
@@ -1672,7 +1496,6 @@ img {
     text-align: left;
 }
 
-
 .booking-summary h3 {
     margin-bottom: 17px;
 
@@ -1681,29 +1504,21 @@ img {
     font-size: 20px;
 }
 
-
 .booking-summary p {
     margin-bottom: 8px;
 
     color: var(--text-grey);
 }
 
-
-/* =========================================================
-   CUSTOMER DETAILS
-========================================================= */
-
 .customer-details-section {
     max-width: 650px;
 }
-
 
 .customer-details-section > h2 {
     margin-bottom: 27px;
 
     text-align: center;
 }
-
 
 .customer-booking-summary {
     padding: 25px;
@@ -1716,27 +1531,19 @@ img {
     background: #fdfbf6;
 }
 
-
 .customer-booking-summary h3 {
     margin-bottom: 11px;
 
     color: var(--text-dark);
 }
 
-
 #customer-form {
     padding: 31px;
 }
 
-
-/* =========================================================
-   FORMS
-========================================================= */
-
 .form-group {
     margin-bottom: 20px;
 }
-
 
 .form-group label {
     display: block;
@@ -1749,7 +1556,6 @@ img {
 
     font-weight: 600;
 }
-
 
 .form-group input,
 .form-group textarea,
@@ -1776,13 +1582,11 @@ img {
         box-shadow var(--transition);
 }
 
-
 .form-group input:hover,
 .form-group textarea:hover,
 .form-group select:hover {
     border-color: #bbb3a5;
 }
-
 
 .form-group input:focus,
 .form-group textarea:focus,
@@ -1792,11 +1596,6 @@ img {
     box-shadow:
         0 0 0 3px rgba(212, 168, 79, 0.13);
 }
-
-
-/* =========================================================
-   CONFIRMATION PAGE
-========================================================= */
 
 .confirmation-page {
     min-height:
@@ -1813,7 +1612,6 @@ img {
     background: var(--cream);
 }
 
-
 .confirmation-box {
     width: 100%;
 
@@ -1826,7 +1624,6 @@ img {
     box-shadow:
         var(--shadow-medium);
 }
-
 
 .confirmation-box::before {
     content: "";
@@ -1842,7 +1639,6 @@ img {
     background: var(--available);
 }
 
-
 .confirmation-box h2 {
     margin-bottom: 14px;
 
@@ -1857,17 +1653,11 @@ img {
     font-weight: 400;
 }
 
-
 .confirmation-box p {
     margin-bottom: 17px;
 
     color: var(--text-grey);
 }
-
-
-/* =========================================================
-   ADMIN LOGIN
-========================================================= */
 
 .admin-login-page {
     min-height:
@@ -1889,7 +1679,6 @@ img {
         );
 }
 
-
 .admin-login-box {
     width: 100%;
 
@@ -1905,7 +1694,6 @@ img {
         var(--shadow-large);
 }
 
-
 .admin-login-box::before {
     content: "";
 
@@ -1919,7 +1707,6 @@ img {
 
     background: var(--gold);
 }
-
 
 .admin-login-box h2 {
     margin-bottom: 8px;
@@ -1937,11 +1724,9 @@ img {
     font-weight: 400;
 }
 
-
 .admin-login-box .form-group label {
     color: #d0cfcb;
 }
-
 
 .admin-login-box input {
     color: white;
@@ -1951,11 +1736,9 @@ img {
     border-color: #393a40;
 }
 
-
 .admin-login-box input:focus {
     border-color: var(--gold);
 }
-
 
 .login-message {
     margin-top: 16px;
@@ -1967,15 +1750,9 @@ img {
     font-size: 13px;
 }
 
-
-/* =========================================================
-   ADMIN DASHBOARD
-========================================================= */
-
 .admin-dashboard {
     background: #f3f1eb;
 }
-
 
 .admin-welcome {
     max-width: 1120px;
@@ -1983,7 +1760,6 @@ img {
     margin:
         0 auto 38px;
 }
-
 
 .admin-welcome h2 {
     margin-bottom: 8px;
@@ -1999,11 +1775,9 @@ img {
     font-weight: 400;
 }
 
-
 .admin-welcome p {
     color: var(--text-grey);
 }
-
 
 .admin-cards {
     max-width: 1120px;
@@ -2021,7 +1795,6 @@ img {
     gap: 22px;
 }
 
-
 .admin-card {
     padding: 31px;
 
@@ -2033,11 +1806,9 @@ img {
         box-shadow var(--transition);
 }
 
-
 .admin-card:nth-child(2) {
     border-top-color: #5c7181;
 }
-
 
 .admin-card:hover {
     transform:
@@ -2047,7 +1818,6 @@ img {
         var(--shadow-medium);
 }
 
-
 .admin-card h3 {
     margin-bottom: 10px;
 
@@ -2056,24 +1826,17 @@ img {
     font-size: 22px;
 }
 
-
 .admin-card p {
     margin-bottom: 22px;
 
     color: var(--text-grey);
 }
 
-
-/* =========================================================
-   ADMIN SHOW MANAGEMENT
-========================================================= */
-
 .admin-shows-page {
     max-width: 1120px;
 
     margin: 0 auto;
 }
-
 
 .admin-show-form-section {
     padding: 31px;
@@ -2083,7 +1846,6 @@ img {
     border-top:
         3px solid var(--gold);
 }
-
 
 .admin-show-form-section h2,
 .admin-show-list-section h2 {
@@ -2100,13 +1862,11 @@ img {
     font-weight: 400;
 }
 
-
 #admin-shows-container {
     display: grid;
 
     gap: 16px;
 }
-
 
 .admin-show-thumb {
     width: 65px;
@@ -2135,7 +1895,6 @@ img {
         box-shadow var(--transition);
 }
 
-
 .admin-show-item:hover {
     transform:
         translateY(-2px);
@@ -2143,7 +1902,6 @@ img {
     box-shadow:
         var(--shadow-medium);
 }
-
 
 .admin-show-item h3 {
     margin-bottom: 7px;
@@ -2153,7 +1911,6 @@ img {
     font-size: 20px;
 }
 
-
 .admin-show-item p {
     margin-bottom: 4px;
 
@@ -2162,17 +1919,11 @@ img {
     font-size: 14px;
 }
 
-
 .admin-show-actions {
     display: flex;
 
     gap: 8px;
 }
-
-
-/* =========================================================
-   ADMIN ACTION BUTTONS
-========================================================= */
 
 .edit-btn,
 .delete-btn,
@@ -2196,11 +1947,9 @@ img {
         background var(--transition);
 }
 
-
 .edit-btn {
     background: var(--blue);
 }
-
 
 .edit-btn:hover {
     transform:
@@ -2209,11 +1958,9 @@ img {
     background: var(--blue-hover);
 }
 
-
 .delete-btn {
     background: var(--danger);
 }
-
 
 .delete-btn:hover {
     transform:
@@ -2222,18 +1969,15 @@ img {
     background: var(--danger-hover);
 }
 
-
 .cancel-btn {
     margin-top: 10px;
 
     background: #74716b;
 }
 
-
 .cancel-btn:hover {
     background: #5e5b56;
 }
-
 
 #show-message {
     margin-top: 14px;
@@ -2243,22 +1987,15 @@ img {
     font-size: 13px;
 }
 
-
-/* =========================================================
-   ADMIN BOOKINGS
-========================================================= */
-
 .admin-bookings-page {
     max-width: 1120px;
 
     margin: 0 auto;
 }
 
-
 .admin-bookings-header {
     margin-bottom: 29px;
 }
-
 
 .admin-bookings-header h2 {
     margin-bottom: 7px;
@@ -2274,11 +2011,9 @@ img {
     font-weight: 400;
 }
 
-
 .admin-bookings-header p {
     color: var(--text-grey);
 }
-
 
 #bookings-container {
     display: grid;
@@ -2286,14 +2021,12 @@ img {
     gap: 18px;
 }
 
-
 .admin-booking-card {
     padding: 27px;
 
     border-left:
         3px solid var(--gold);
 }
-
 
 .booking-card-header {
     margin-bottom: 20px;
@@ -2311,20 +2044,17 @@ img {
         1px solid var(--border);
 }
 
-
 .booking-card-header h3 {
     color: var(--text-dark);
 
     font-size: 20px;
 }
 
-
 .booking-card-header span {
     color: #95918a;
 
     font-size: 12px;
 }
-
 
 .booking-details-grid {
     display: grid;
@@ -2337,7 +2067,6 @@ img {
 
     gap: 20px;
 }
-
 
 .booking-details-grid strong {
     display: block;
@@ -2355,15 +2084,9 @@ img {
     text-transform: uppercase;
 }
 
-
 .booking-details-grid p {
     color: #2c2c2e;
 }
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
 
 .site-footer,
 footer {
@@ -2375,7 +2098,6 @@ footer {
     background: var(--dark);
 }
 
-
 .footer-inner {
     display: flex;
 
@@ -2384,7 +2106,6 @@ footer {
 
     gap: 30px;
 }
-
 
 .footer-brand {
     display: inline-block;
@@ -2405,16 +2126,13 @@ footer {
         color var(--transition);
 }
 
-
 .footer-brand:hover {
     color: var(--gold);
 }
 
-
 .footer-inner p {
     font-size: 13px;
 }
-
 
 .footer-details {
     display: flex;
@@ -2430,11 +2148,6 @@ footer {
     font-size: 12px;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
 @media (max-width: 900px) {
 
     .hero-layout {
@@ -2446,21 +2159,17 @@ footer {
             85px 0;
     }
 
-
     .hero-content {
         max-width: 760px;
     }
-
 
     .hero-art {
         justify-content: flex-start;
     }
 
-
     .theatre-card {
         max-width: 440px;
     }
-
 
     .process-layout {
         grid-template-columns: 1fr;
@@ -2468,13 +2177,11 @@ footer {
         gap: 45px;
     }
 
-
     .shows-heading {
         grid-template-columns: 1fr;
 
         gap: 15px;
     }
-
 
     .seats-container {
         grid-template-columns:
@@ -2482,11 +2189,6 @@ footer {
     }
 
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 640px) {
 
@@ -2503,12 +2205,10 @@ footer {
         gap: 11px;
     }
 
-
     .brand,
     .logo {
         font-size: 20px;
     }
-
 
     .main-nav,
     .navbar nav,
@@ -2520,7 +2220,6 @@ footer {
         flex-wrap: wrap;
     }
 
-
     .main-nav a,
     .navbar nav a,
     .admin-nav a {
@@ -2528,17 +2227,14 @@ footer {
             7px 9px;
     }
 
-
     .hero {
         min-height: auto;
     }
-
 
     .hero-layout {
         padding:
             67px 0;
     }
-
 
     .hero-content h1 {
         font-size: 45px;
@@ -2546,11 +2242,9 @@ footer {
         letter-spacing: -1.5px;
     }
 
-
     .hero-description {
         font-size: 15px;
     }
-
 
     .hero-actions {
         flex-direction: column;
@@ -2560,21 +2254,17 @@ footer {
         max-width: 330px;
     }
 
-
     .theatre-card {
         transform: none;
     }
-
 
     .theatre-stage {
         height: 310px;
     }
 
-
     .stage-message strong {
         font-size: 38px;
     }
-
 
     .booking-process,
     .shows-section {
@@ -2582,18 +2272,15 @@ footer {
             67px 16px;
     }
 
-
     .process-item {
         grid-template-columns:
             42px 1fr;
     }
 
-
     .shows-container {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-
 
     .show-card {
         min-height: 450px;
@@ -2604,7 +2291,6 @@ footer {
         padding: 20px 18px 18px;
     }
 
-
     .seat-page,
     .customer-page,
     .admin-dashboard,
@@ -2614,7 +2300,6 @@ footer {
             55px 16px;
     }
 
-
     .seats-container {
         grid-template-columns:
             repeat(5, 1fr);
@@ -2622,13 +2307,11 @@ footer {
         gap: 7px;
     }
 
-
     .seat {
         min-height: 42px;
 
         font-size: 11px;
     }
-
 
     .booking-summary,
     #customer-form,
@@ -2637,11 +2320,9 @@ footer {
         padding: 24px;
     }
 
-
     .admin-cards {
         grid-template-columns: 1fr;
     }
-
 
     .admin-show-item {
         flex-direction: column;
@@ -2649,17 +2330,14 @@ footer {
         align-items: stretch;
     }
 
-
     .admin-show-actions {
         width: 100%;
     }
-
 
     .edit-btn,
     .delete-btn {
         flex: 1;
     }
-
 
     .booking-card-header {
         flex-direction: column;
@@ -2667,18 +2345,15 @@ footer {
         align-items: flex-start;
     }
 
-
     .booking-details-grid {
         grid-template-columns: 1fr;
     }
-
 
     .footer-inner {
         flex-direction: column;
 
         align-items: flex-start;
     }
-
 
     .footer-details {
         align-items: flex-start;

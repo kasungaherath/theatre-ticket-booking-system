@@ -56,8 +56,6 @@ adminLoginForm.addEventListener(
                 return;
             }
 
-
-            // Save admin information
             sessionStorage.setItem(
                 "admin",
                 JSON.stringify(
@@ -65,15 +63,11 @@ adminLoginForm.addEventListener(
                 )
             );
 
-
-            // Save JWT token
             sessionStorage.setItem(
                 "adminToken",
                 result.token
             );
 
-
-            // Go to dashboard
             window.location.href =
                 "/admin-dashboard.html";
 

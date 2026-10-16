@@ -9,11 +9,6 @@ const db = require("./db");
 
 const app = express();
 
-
-// ======================================================
-// MIDDLEWARE
-// ======================================================
-
 app.use(cors());
 app.use(express.json());
 
@@ -30,11 +25,6 @@ db.query(
         // Silently ignore if column already exists
     }
 );
-
-
-// ======================================================
-// ADMIN AUTHENTICATION MIDDLEWARE
-// ======================================================
 
 function verifyAdmin(req, res, next) {
 
@@ -79,11 +69,6 @@ function verifyAdmin(req, res, next) {
     }
 }
 
-
-// ======================================================
-// TEST DATABASE CONNECTION
-// ======================================================
-
 app.get("/api/test-db", (req, res) => {
 
     db.query(
@@ -114,11 +99,6 @@ app.get("/api/test-db", (req, res) => {
     );
 });
 
-
-// ======================================================
-// GET ALL SHOWS
-// ======================================================
-
 app.get("/api/shows", (req, res) => {
 
     const sql = `
@@ -145,11 +125,6 @@ app.get("/api/shows", (req, res) => {
         res.json(results);
     });
 });
-
-
-// ======================================================
-// GET SEATS FOR A SPECIFIC SHOW
-// ======================================================
 
 app.get(
     "/api/shows/:showId/seats",
@@ -221,11 +196,6 @@ app.get(
     }
 );
 
-
-// ======================================================
-// CREATE CUSTOMER BOOKING
-// ======================================================
-
 app.post(
     "/api/bookings",
     async (req, res) => {
@@ -237,11 +207,6 @@ app.post(
             showId,
             seatIds
         } = req.body;
-
-
-        // ----------------------------------------------
-        // BASIC VALIDATION
-        // ----------------------------------------------
 
         if (
             !name ||
@@ -258,11 +223,6 @@ app.post(
             });
         }
 
-
-        // ----------------------------------------------
-        // NAME VALIDATION
-        // ----------------------------------------------
-
         if (!name.trim()) {
 
             return res.status(400).json({
@@ -270,11 +230,6 @@ app.post(
                     "Customer name is required"
             });
         }
-
-
-        // ----------------------------------------------
-        // PASSWORD VALIDATION
-        // ----------------------------------------------
 
         if (password.length < 6) {
 
@@ -284,14 +239,8 @@ app.post(
             });
         }
 
-
-        // ----------------------------------------------
-        // EMAIL VALIDATION
-        // ----------------------------------------------
-
         const emailPattern =
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 
         if (!emailPattern.test(email)) {
 
@@ -300,11 +249,6 @@ app.post(
                     "Please enter a valid email address"
             });
         }
-
-
-        // ----------------------------------------------
-        // SHOW ID VALIDATION
-        // ----------------------------------------------
 
         if (
             !Number.isInteger(Number(showId)) ||
@@ -317,11 +261,6 @@ app.post(
             });
         }
 
-
-        // ----------------------------------------------
-        // SEAT ID VALIDATION
-        // ----------------------------------------------
-
         const invalidSeat =
             seatIds.some(
                 (seatId) =>
@@ -331,7 +270,6 @@ app.post(
                     Number(seatId) <= 0
             );
 
-
         if (invalidSeat) {
 
             return res.status(400).json({
@@ -340,8 +278,6 @@ app.post(
             });
         }
 
-
-        // Convert all seat IDs to numbers
         const uniqueSeatIds =
             [
                 ...new Set(
@@ -349,8 +285,6 @@ app.post(
                 )
             ];
 
-
-        // Reject duplicate seat IDs
         if (
             uniqueSeatIds.length !==
             seatIds.length
@@ -362,27 +296,19 @@ app.post(
             });
         }
 
-
         try {
 
-            // Hash the password
             const hashedPassword =
                 await bcrypt.hash(
                     password,
                     10
                 );
 
-
-            // ------------------------------------------
-            // CHECK WHETHER USER EXISTS
-            // ------------------------------------------
-
             const findUserSql = `
                 SELECT id
                 FROM users
                 WHERE email = ?
             `;
-
 
             db.query(
                 findUserSql,
@@ -404,8 +330,6 @@ app.post(
                             });
                     }
 
-
-                    // Existing customer
                     if (users.length > 0) {
 
                         createBooking(
@@ -413,10 +337,6 @@ app.post(
                         );
 
                     } else {
-
-                        // --------------------------------
-                        // CREATE NEW CUSTOMER
-                        // --------------------------------
 
                         const createUserSql = `
                             INSERT INTO users
@@ -427,7 +347,6 @@ app.post(
                             )
                             VALUES (?, ?, ?)
                         `;
-
 
                         db.query(
                             createUserSql,
@@ -456,7 +375,6 @@ app.post(
                                         });
                                 }
 
-
                                 createBooking(
                                     userResult.insertId
                                 );
@@ -466,23 +384,13 @@ app.post(
                 }
             );
 
-
-            // ==================================================
-            // CREATE BOOKING
-            // ==================================================
-
             function createBooking(userId) {
-
-                // ----------------------------------------------
-                // CHECK WHETHER SHOW EXISTS
-                // ----------------------------------------------
 
                 const showCheckSql = `
                     SELECT id
                     FROM shows
                     WHERE id = ?
                 `;
-
 
                 db.query(
                     showCheckSql,
@@ -507,7 +415,6 @@ app.post(
                                 });
                         }
 
-
                         if (
                             showResults.length === 0
                         ) {
@@ -520,15 +427,9 @@ app.post(
                                 });
                         }
 
-
                         checkSeatsExist();
                     }
                 );
-
-
-                // ----------------------------------------------
-                // CHECK WHETHER ALL SELECTED SEATS EXIST
-                // ----------------------------------------------
 
                 function checkSeatsExist() {
 
@@ -537,7 +438,6 @@ app.post(
                         FROM seats
                         WHERE id IN (?)
                     `;
-
 
                     db.query(
                         seatCheckSql,
@@ -562,7 +462,6 @@ app.post(
                                     });
                             }
 
-
                             if (
                                 seatResults.length !==
                                 uniqueSeatIds.length
@@ -576,16 +475,10 @@ app.post(
                                     });
                             }
 
-
                             checkSeatAvailability();
                         }
                     );
                 }
-
-
-                // ----------------------------------------------
-                // CHECK SEAT AVAILABILITY
-                // ----------------------------------------------
 
                 function checkSeatAvailability() {
 
@@ -601,7 +494,6 @@ app.post(
 
                         AND bs.seat_id IN (?)
                     `;
-
 
                     db.query(
                         availabilitySql,
@@ -629,7 +521,6 @@ app.post(
                                     });
                             }
 
-
                             if (
                                 bookedSeats.length > 0
                             ) {
@@ -642,16 +533,10 @@ app.post(
                                     });
                             }
 
-
                             insertBooking();
                         }
                     );
                 }
-
-
-                // ----------------------------------------------
-                // INSERT BOOKING
-                // ----------------------------------------------
 
                 function insertBooking() {
 
@@ -663,7 +548,6 @@ app.post(
                         )
                         VALUES (?, ?)
                     `;
-
 
                     db.query(
                         bookingSql,
@@ -691,10 +575,8 @@ app.post(
                                     });
                             }
 
-
                             const bookingId =
                                 bookingResult.insertId;
-
 
                             saveBookingSeats(
                                 bookingId
@@ -702,11 +584,6 @@ app.post(
                         }
                     );
                 }
-
-
-                // ----------------------------------------------
-                // SAVE BOOKED SEATS
-                // ----------------------------------------------
 
                 function saveBookingSeats(
                     bookingId
@@ -720,7 +597,6 @@ app.post(
                             ]
                         );
 
-
                     const bookingSeatsSql = `
                         INSERT INTO booking_seats
                         (
@@ -729,7 +605,6 @@ app.post(
                         )
                         VALUES ?
                     `;
-
 
                     db.query(
                         bookingSeatsSql,
@@ -753,7 +628,6 @@ app.post(
                                     });
                             }
 
-
                             return res
                                 .status(201)
                                 .json({
@@ -775,7 +649,6 @@ app.post(
                 error
             );
 
-
             return res
                 .status(500)
                 .json({
@@ -786,11 +659,6 @@ app.post(
     }
 );
 
-
-// ======================================================
-// ADMIN LOGIN
-// ======================================================
-
 app.post(
     "/api/admin/login",
     (req, res) => {
@@ -800,7 +668,6 @@ app.post(
             password
         } = req.body;
 
-
         if (!email || !password) {
 
             return res.status(400).json({
@@ -808,7 +675,6 @@ app.post(
                     "Email and password are required"
             });
         }
-
 
         const sql = `
             SELECT
@@ -822,7 +688,6 @@ app.post(
 
             WHERE email = ?
         `;
-
 
         db.query(
             sql,
@@ -842,7 +707,6 @@ app.post(
                     });
                 }
 
-
                 if (results.length === 0) {
 
                     return res.status(401).json({
@@ -851,11 +715,8 @@ app.post(
                     });
                 }
 
-
                 const user = results[0];
 
-
-                // Check role
                 if (user.role !== "admin") {
 
                     return res.status(403).json({
@@ -864,7 +725,6 @@ app.post(
                     });
                 }
 
-
                 try {
 
                     const passwordMatches =
@@ -872,7 +732,6 @@ app.post(
                             password,
                             user.password
                         );
-
 
                     if (!passwordMatches) {
 
@@ -884,8 +743,6 @@ app.post(
                             });
                     }
 
-
-                    // Create JWT
                     const token = jwt.sign(
                         {
                             id: user.id,
@@ -898,7 +755,6 @@ app.post(
                             expiresIn: "2h"
                         }
                     );
-
 
                     return res.json({
                         message:
@@ -920,7 +776,6 @@ app.post(
                         error
                     );
 
-
                     return res
                         .status(500)
                         .json({
@@ -932,11 +787,6 @@ app.post(
         );
     }
 );
-
-
-// ======================================================
-// ADMIN - ADD SHOW
-// ======================================================
 
 app.post(
     "/api/admin/shows",
@@ -952,7 +802,6 @@ app.post(
             price
         } = req.body;
 
-
         if (
             !title ||
             !show_date ||
@@ -966,7 +815,6 @@ app.post(
             });
         }
 
-
         if (!title.trim()) {
 
             return res.status(400).json({
@@ -974,7 +822,6 @@ app.post(
                     "Show title is required"
             });
         }
-
 
         if (
             Number.isNaN(Number(price)) ||
@@ -986,7 +833,6 @@ app.post(
                     "Ticket price must be a valid positive number"
             });
         }
-
 
         const sql = `
             INSERT INTO shows
@@ -1001,7 +847,6 @@ app.post(
 
             VALUES (?, ?, ?, ?, ?, ?)
         `;
-
 
         db.query(
             sql,
@@ -1026,13 +871,11 @@ app.post(
                         err
                     );
 
-
                     return res.status(500).json({
                         message:
                             "Failed to add show"
                     });
                 }
-
 
                 return res.status(201).json({
                     message:
@@ -1046,11 +889,6 @@ app.post(
     }
 );
 
-
-// ======================================================
-// ADMIN - UPDATE SHOW
-// ======================================================
-
 app.put(
     "/api/admin/shows/:id",
     verifyAdmin,
@@ -1058,7 +896,6 @@ app.put(
 
         const showId =
             req.params.id;
-
 
         const {
             title,
@@ -1068,7 +905,6 @@ app.put(
             show_time,
             price
         } = req.body;
-
 
         if (
             !Number.isInteger(Number(showId)) ||
@@ -1080,7 +916,6 @@ app.put(
                     "Invalid show ID"
             });
         }
-
 
         if (
             !title ||
@@ -1095,7 +930,6 @@ app.put(
             });
         }
 
-
         if (!title.trim()) {
 
             return res.status(400).json({
@@ -1103,7 +937,6 @@ app.put(
                     "Show title is required"
             });
         }
-
 
         if (
             Number.isNaN(Number(price)) ||
@@ -1115,7 +948,6 @@ app.put(
                     "Ticket price must be a valid positive number"
             });
         }
-
 
         const sql = `
             UPDATE shows
@@ -1130,7 +962,6 @@ app.put(
 
             WHERE id = ?
         `;
-
 
         db.query(
             sql,
@@ -1156,13 +987,11 @@ app.put(
                         err
                     );
 
-
                     return res.status(500).json({
                         message:
                             "Failed to update show"
                     });
                 }
-
 
                 if (
                     result.affectedRows === 0
@@ -1174,7 +1003,6 @@ app.put(
                     });
                 }
 
-
                 return res.json({
                     message:
                         "Show updated successfully"
@@ -1184,11 +1012,6 @@ app.put(
     }
 );
 
-
-// ======================================================
-// ADMIN - DELETE SHOW
-// ======================================================
-
 app.delete(
     "/api/admin/shows/:id",
     verifyAdmin,
@@ -1196,7 +1019,6 @@ app.delete(
 
         const showId =
             req.params.id;
-
 
         if (
             !Number.isInteger(Number(showId)) ||
@@ -1209,12 +1031,10 @@ app.delete(
             });
         }
 
-
         const sql = `
             DELETE FROM shows
             WHERE id = ?
         `;
-
 
         db.query(
             sql,
@@ -1227,7 +1047,6 @@ app.delete(
                         "Error deleting show:",
                         err
                     );
-
 
                     if (
                         err.code ===
@@ -1242,7 +1061,6 @@ app.delete(
                             });
                     }
 
-
                     return res
                         .status(500)
                         .json({
@@ -1250,7 +1068,6 @@ app.delete(
                                 "Failed to delete show"
                         });
                 }
-
 
                 if (
                     result.affectedRows === 0
@@ -1262,7 +1079,6 @@ app.delete(
                     });
                 }
 
-
                 return res.json({
                     message:
                         "Show deleted successfully"
@@ -1271,11 +1087,6 @@ app.delete(
         );
     }
 );
-
-
-// ======================================================
-// ADMIN - GET ALL BOOKINGS
-// ======================================================
 
 app.get(
     "/api/admin/bookings",
@@ -1339,7 +1150,6 @@ app.get(
                 b.booking_date DESC;
         `;
 
-
         db.query(
             sql,
             (err, results) => {
@@ -1351,7 +1161,6 @@ app.get(
                         err
                     );
 
-
                     return res
                         .status(500)
                         .json({
@@ -1360,21 +1169,14 @@ app.get(
                         });
                 }
 
-
                 return res.json(results);
             }
         );
     }
 );
 
-
-// ======================================================
-// START SERVER
-// ======================================================
-
 const PORT =
     process.env.PORT || 3000;
-
 
 app.listen(
     PORT,

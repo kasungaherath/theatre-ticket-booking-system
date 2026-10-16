@@ -4,17 +4,11 @@ const adminData =
 const adminToken =
     sessionStorage.getItem("adminToken");
 
-
 if (!adminData || !adminToken) {
 
     window.location.href =
         "/admin-login.html";
 }
-
-
-// ======================================================
-// ELEMENTS
-// ======================================================
 
 const showForm =
     document.getElementById(
@@ -86,13 +80,7 @@ const logoutButton =
         "logout-btn"
     );
 
-
 let currentShows = [];
-
-
-// ======================================================
-// PAGE LOAD
-// ======================================================
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -103,17 +91,11 @@ document.addEventListener(
     }
 );
 
-
-// ======================================================
-// LOGOUT
-// ======================================================
-
 logoutButton.addEventListener(
     "click",
     (event) => {
 
         event.preventDefault();
-
 
         sessionStorage.removeItem(
             "admin"
@@ -123,22 +105,15 @@ logoutButton.addEventListener(
             "adminToken"
         );
 
-
         window.location.href =
             "/admin-login.html";
     }
 );
 
-
-// ======================================================
-// LOAD SHOWS
-// ======================================================
-
 async function loadShows() {
 
     showsContainer.innerHTML =
         "<p>Loading shows...</p>";
-
 
     try {
 
@@ -146,7 +121,6 @@ async function loadShows() {
             await fetch(
                 "/api/shows"
             );
-
 
         if (!response.ok) {
 
@@ -156,10 +130,8 @@ async function loadShows() {
 
         }
 
-
         currentShows =
             await response.json();
-
 
         displayShows();
 
@@ -170,21 +142,14 @@ async function loadShows() {
             error
         );
 
-
         showsContainer.innerHTML =
             "<p>Unable to load shows.</p>";
     }
 }
 
-
-// ======================================================
-// DISPLAY SHOWS
-// ======================================================
-
 function displayShows() {
 
     showsContainer.innerHTML = "";
-
 
     if (currentShows.length === 0) {
 
@@ -194,7 +159,6 @@ function displayShows() {
         return;
     }
 
-
     currentShows.forEach(
         (show) => {
 
@@ -203,22 +167,18 @@ function displayShows() {
                     "div"
                 );
 
-
             card.classList.add(
                 "admin-show-item"
             );
-
 
             const showDate =
                 new Date(
                     show.show_date
                 );
 
-
             const formattedDate =
                 showDate
                     .toLocaleDateString();
-
 
             card.innerHTML = `
                 ${
@@ -269,7 +229,6 @@ function displayShows() {
 
                 </div>
 
-
                 <div class="admin-show-actions">
 
                     <button
@@ -278,7 +237,6 @@ function displayShows() {
                     >
                         Edit
                     </button>
-
 
                     <button
                         class="delete-btn"
@@ -290,7 +248,6 @@ function displayShows() {
                 </div>
             `;
 
-
             showsContainer
                 .appendChild(
                     card
@@ -299,17 +256,11 @@ function displayShows() {
     );
 }
 
-
-// ======================================================
-// ADD OR UPDATE SHOW
-// ======================================================
-
 showForm.addEventListener(
     "submit",
     async (event) => {
 
         event.preventDefault();
-
 
         const showData = {
 
@@ -340,7 +291,6 @@ showForm.addEventListener(
                 )
         };
 
-
         // Basic validation
         if (
             !showData.title ||
@@ -357,19 +307,12 @@ showForm.addEventListener(
             return;
         }
 
-
         const showId =
             showIdInput.value;
-
 
         try {
 
             let response;
-
-
-            // ------------------------------------------
-            // UPDATE EXISTING SHOW
-            // ------------------------------------------
 
             if (showId) {
 
@@ -397,10 +340,6 @@ showForm.addEventListener(
 
             } else {
 
-                // --------------------------------------
-                // ADD NEW SHOW
-                // --------------------------------------
-
                 response =
                     await fetch(
                         "/api/admin/shows",
@@ -424,10 +363,8 @@ showForm.addEventListener(
                     );
             }
 
-
             const result =
                 await response.json();
-
 
             // Admin session expired
             if (
@@ -443,19 +380,16 @@ showForm.addEventListener(
                     "adminToken"
                 );
 
-
                 alert(
                     result.message ||
                     "Your admin session has expired."
                 );
-
 
                 window.location.href =
                     "/admin-login.html";
 
                 return;
             }
-
 
             if (!response.ok) {
 
@@ -466,13 +400,10 @@ showForm.addEventListener(
                 return;
             }
 
-
             showMessage.textContent =
                 result.message;
 
-
             resetForm();
-
 
             await loadShows();
 
@@ -483,17 +414,11 @@ showForm.addEventListener(
                 error
             );
 
-
             showMessage.textContent =
                 "Unable to save show.";
         }
     }
 );
-
-
-// ======================================================
-// START EDIT
-// ======================================================
 
 function startEdit(showId) {
 
@@ -503,19 +428,15 @@ function startEdit(showId) {
                 item.id === showId
         );
 
-
     if (!show) {
         return;
     }
 
-
     showIdInput.value =
         show.id;
 
-
     titleInput.value =
         show.title;
-
 
     descriptionInput.value =
         show.description || "";
@@ -525,17 +446,14 @@ function startEdit(showId) {
             show.poster_url || "";
     }
 
-
     // Format date for HTML date input
     const date =
         new Date(
             show.show_date
         );
 
-
     const year =
         date.getFullYear();
-
 
     const month =
         String(
@@ -545,7 +463,6 @@ function startEdit(showId) {
             "0"
         );
 
-
     const day =
         String(
             date.getDate()
@@ -554,10 +471,8 @@ function startEdit(showId) {
             "0"
         );
 
-
     dateInput.value =
         `${year}-${month}-${day}`;
-
 
     timeInput.value =
         show.show_time
@@ -566,27 +481,21 @@ function startEdit(showId) {
                 5
             );
 
-
     priceInput.value =
         Number(
             show.price
         );
 
-
     formTitle.textContent =
         "Edit Show";
-
 
     saveButton.textContent =
         "Update Show";
 
-
     cancelEditButton.style.display =
         "inline-block";
 
-
     showMessage.textContent = "";
-
 
     window.scrollTo({
         top: 0,
@@ -594,52 +503,32 @@ function startEdit(showId) {
     });
 }
 
-
-// ======================================================
-// CANCEL EDIT
-// ======================================================
-
 cancelEditButton.addEventListener(
     "click",
     () => {
 
         resetForm();
 
-
         showMessage.textContent =
             "Edit cancelled.";
     }
 );
 
-
-// ======================================================
-// RESET FORM
-// ======================================================
-
 function resetForm() {
 
     showForm.reset();
 
-
     showIdInput.value = "";
-
 
     formTitle.textContent =
         "Add New Show";
 
-
     saveButton.textContent =
         "Add Show";
-
 
     cancelEditButton.style.display =
         "none";
 }
-
-
-// ======================================================
-// DELETE SHOW
-// ======================================================
 
 async function deleteShow(showId) {
 
@@ -648,11 +537,9 @@ async function deleteShow(showId) {
             "Are you sure you want to delete this show?"
         );
 
-
     if (!confirmed) {
         return;
     }
-
 
     try {
 
@@ -671,10 +558,8 @@ async function deleteShow(showId) {
                 }
             );
 
-
         const result =
             await response.json();
-
 
         // Token expired
         if (
@@ -690,19 +575,16 @@ async function deleteShow(showId) {
                 "adminToken"
             );
 
-
             alert(
                 result.message ||
                 "Your admin session has expired."
             );
-
 
             window.location.href =
                 "/admin-login.html";
 
             return;
         }
-
 
         if (!response.ok) {
 
@@ -714,11 +596,9 @@ async function deleteShow(showId) {
             return;
         }
 
-
         alert(
             result.message
         );
-
 
         await loadShows();
 
@@ -728,7 +608,6 @@ async function deleteShow(showId) {
             "Error deleting show:",
             error
         );
-
 
         alert(
             "Unable to delete show."
